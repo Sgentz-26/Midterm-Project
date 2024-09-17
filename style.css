@@ -3,10 +3,9 @@ header {
     color: #fff;
     padding: 10px 0;
     margin: 0 auto;
-    
-  }
+}
 
-  .col {
+.col {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -18,23 +17,43 @@ header {
 
 .navbar {
     background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
 }
 
-.navbar-toggler {
-    border-color: #fff;
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0px;
+    padding: 0;
 }
 
-.navbar-toggler-icon {
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path stroke="rgba(255, 255, 255, 1)" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/></svg>');
+.nav-item {
+    margin-right: 15px;
 }
 
-nav.navbar .navbar-brand, 
-nav.navbar .nav-link {
+.navbar-brand {
     color: #fff;
     font-weight: bold;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: #fff;
+}
+
+.nav-link {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .nav-link:hover {
+    color: #fff;
     text-decoration: underline;
 }
 
@@ -47,11 +66,10 @@ footer {
     color: #fff; 
 }
 
-
- .about-section{
+.about-section {
     text-align: center;
- }
+}
 
- .py-5{
+.py-5 {
     text-align: center;
- }
+}
