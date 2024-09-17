@@ -1,0 +1,43 @@
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    
+  }
+
+  .col {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.col:hover {
+    transform: scale(1.05);
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+    background-color: #333;
+}
+
+.navbar-toggler {
+    border-color: #fff;
+}
+
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path stroke="rgba(255, 255, 255, 1)" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/></svg>'); /* White lines for the icon */
+}
+
+nav.navbar .navbar-brand, 
+nav.navbar .nav-link {
+    color: #fff;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.about-section {
+    padding-left: 20px;
+}
+
