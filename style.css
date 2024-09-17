@@ -2,6 +2,7 @@ header {
     background-color: #333;
     color: #fff;
     padding: 10px 0;
+    margin: 0 auto;
     
   }
 
@@ -45,3 +46,12 @@ footer {
     background-color: #333;
     color: #fff; 
 }
+
+
+ .about-section{
+    text-align: center;
+ }
+
+ .py-5{
+    text-align: center;
+ }
