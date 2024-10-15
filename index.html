@@ -16,27 +16,38 @@
 
 </head>
 <body>
-    <nav class="navbar">
-      <div class="container-fluid">
-        <a class="navbar-brand">Catalog</a>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Kitchen</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="category2.html">Shoes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-        </ul>
+  <header class="p-3 bg-light text-center">
+    <div class="container">
+      <!-- User and Cart Icons -->
+      <div class="d-flex justify-content-end">
+        <a href="profile.html" class="btn btn-outline-secondary me-2">👤</a>
+        <a href="cart.html" class="btn btn-outline-secondary">🛒</a>
       </div>
-    </nav>
-  
-    <header>
-      <h1 style="text-align: center;">Kitchen Appliances</h1>
-    </header>
+      
+      <!-- Logo and Categories (Vertically Centered) -->
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="d-flex">
+          <a href="category1.html" class="btn btn-outline-secondary me-2">Category 1</a>
+          <a href="category2.html" class="btn btn-outline-secondary me-2">Category 2</a>
+        </div>
+        
+        <!-- Logo Centered -->
+        <h1 class="logo mx-auto">LOGO</h1>
 
+        <div class="d-flex">
+          <a href="category3.html" class="btn btn-outline-secondary me-2">Category 3</a>
+          <a href="category4.html" class="btn btn-outline-secondary">Category 4</a>
+        </div>
+      </div>
+
+      <!-- Search bar -->
+      <div class="input-group mb-3 w-50 mx-auto">
+        <input type="text" class="form-control" placeholder="Type to Search..." aria-label="Search">
+        <button class="btn btn-outline-secondary" type="button">🔍</button>
+      </div>
+    </div>
+  </header>
+  
     <main>
         <div class="album py-5 bg-body-tertiary">
           <div class="container">
