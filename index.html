@@ -16,7 +16,7 @@
 
 </head>
 <body>
-  <header class="p-3 bg-light text-center">
+  <header class="p-3 text-center">
     <div class="container">
       <!-- User and Cart Icons -->
       <div class="d-flex justify-content-end">
@@ -24,17 +24,17 @@
         <a href="cart.html" class="btn btn-outline-secondary">🛒</a>
       </div>
       
-      <!-- Logo and Categories (Vertically Centered) -->
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <div class="d-flex">
+      <!-- Logo and Categories (Vertically Centered, Closer) -->
+      <div class="d-flex justify-content-center align-items-center mb-2 flex-wrap">
+        <div class="d-flex me-3">
           <a href="category1.html" class="btn btn-outline-secondary me-2">Category 1</a>
-          <a href="category2.html" class="btn btn-outline-secondary me-2">Category 2</a>
+          <a href="category2.html" class="btn btn-outline-secondary">Category 2</a>
         </div>
         
         <!-- Logo Centered -->
-        <h1 class="logo mx-auto">LOGO</h1>
+        <h1 class="logo mx-3">LOGO</h1>
 
-        <div class="d-flex">
+        <div class="d-flex ms-3">
           <a href="category3.html" class="btn btn-outline-secondary me-2">Category 3</a>
           <a href="category4.html" class="btn btn-outline-secondary">Category 4</a>
         </div>
@@ -48,78 +48,27 @@
     </div>
   </header>
   
-    <main>
-        <div class="album py-5 bg-body-tertiary">
-          <div class="container">
-      
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="./image/fridge.jpg" alt="bluebell" />
-                  <div class="card-body">
-                    <p class="card-text"><strong>$799.99</strong> Spacious and Efficient Refrigerator</p>
-                  </div>
-                </div>
-              </div>
-      
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="./image/knife.jpg" alt="dahlia" />
-                  <div class="card-body">
-                    <p class="card-text"><strong>$29.99</strong> Sharp and Durable Kitchen Knife</p>
-                  </div>
-                </div>
-              </div>
-      
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="./image/mixer.jpg" alt="daisy"/>
-                  <div class="card-body">
-                    <p class="card-text"><strong>$89.99</strong> Versatile and Powerful Mixer</p>
-                  </div>
-                </div>
-              </div>
-      
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="./image/spatula.jpg" alt="rose"/>
-                  <div class="card-body">
-                    <p class="card-text"><strong>$19.99</strong> Essential and Practical Spatula Set</p>
-                  </div>
-                </div>
-              </div>
-      
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="./image/stove.jpg" alt="sunflower"/>
-                  <div class="card-body">
-                    <p class="card-text"><strong>$499.99</strong> Precision and Stylish Cooking Stove</p>
-                  </div>
-                </div>
-              </div>
-      
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="./image/pot.jpg" alt="tulip"/>
-                  <div class="card-body">
-                    <p class="card-text"><strong>$39.99</strong> Durable and Versatile Cooking Pot</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  <main>
+    <div class="carousel-container">
+      <button class="carousel-prev">&#10094;</button>
+      <div class="carousel-wrapper">
+        <div class="carousel" id="carouselItems">
+          <!-- Product items will be injected here by JavaScript -->
         </div>
-      
-      </main>
-      <footer class="py-5">
-        <div class="container">
-            <p class="mb-1">
-                <strong>Author:</strong> Tirmidi and Samuel<br>
-                <strong>Date:</strong> 09/16/2024
-            </p>
-        </div>
-      </footer>
-      <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+      </div>
+      <button class="carousel-next">&#10095;</button>
+    </div>
+  </main>
+  
+  <footer class="py-5">
+    <div class="container">
+        <p class="mb-1">
+            <strong>Author:</strong> Tirmidi and Samuel<br>
+            <strong>Date:</strong> 09/16/2024
+        </p>
+    </div>
+  </footer>
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>

@@ -1,0 +1,39 @@
+[
+    {
+      "title": "Spacious and Efficient Refrigerator",
+      "price": "$799.99",
+      "rating": "4.5",
+      "image": "./image/fridge.jpg"
+    },
+    {
+      "title": "Sharp and Durable Kitchen Knife",
+      "price": "$29.99",
+      "rating": "4.7",
+      "image": "./image/knife.jpg"
+    },
+    {
+      "title": "Versatile and Powerful Mixer",
+      "price": "$89.99",
+      "rating": "4.6",
+      "image": "./image/mixer.jpg"
+    },
+    {
+      "title": "Essential and Practical Spatula Set",
+      "price": "$19.99",
+      "rating": "4.3",
+      "image": "./image/spatula.jpg"
+    },
+    {
+      "title": "Precision and Stylish Cooking Stove",
+      "price": "$499.99",
+      "rating": "4.8",
+      "image": "./image/stove.jpg"
+    },
+    {
+      "title": "Durable and Versatile Cooking Pot",
+      "price": "$39.99",
+      "rating": "4.4",
+      "image": "./image/pot.jpg"
+    }
+  ]
+  
