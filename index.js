@@ -33,19 +33,25 @@ document.addEventListener("DOMContentLoaded", function() {
       card.classList.add('product-card');
       card.style.cursor = "pointer";
 
+      // Create the clickable link inside the product card
       const link = document.createElement('a');
       link.href = `product_page.html?id=${product.id}`;
+      link.style.textDecoration = 'none';  // Remove underline
+      link.style.color = 'inherit';        // Inherit text color
 
-      card.innerHTML = `
+      // Add image, title, price, and rating to the product card
+      link.innerHTML = `
         <img src="${product.image}" alt="${product.title}">
         <h5>${product.title}</h5>
         <p><strong>${product.price}</strong></p>
         <p>Rating: ${product.rating} ⭐</p>
       `;
-      link.appendChild(card);  // Wrap the card inside the clickable link
-      return link;
+
+      card.appendChild(link);  // Add link to the product card
+      return card;
     }
-  
+
+
     // Function to slide the carousel and recycle items
     function slideCarousel(direction, productWidth) {
       const carousel = document.getElementById('carouselItems');

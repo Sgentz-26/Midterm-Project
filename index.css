@@ -46,6 +46,7 @@ header a:hover {
     background-color: white;
     border: 2px solid black;
     border-radius: 0 25px 25px 0;
+    border-left: none;
 }
 
 .input-group .btn-outline-secondary:hover {
@@ -68,6 +69,7 @@ header a:hover {
 .form-control {
     border-radius: 25px;
     border: 2px solid black;
+    border-right: none;
     padding: 10px;
     outline: none;
 }
@@ -125,7 +127,6 @@ footer {
     width: 100%;
 }
 
-/* Product card styling within the carousel */
 /* Product card styling within the carousel */
 .product-card {
     flex: 0 0 20%; /* Ensure consistent product card size */
