@@ -1,39 +1,50 @@
 [
     {
+      "id": 1,
       "title": "Spacious and Efficient Refrigerator",
       "price": "$799.99",
       "rating": "4.5",
-      "image": "./image/fridge.jpg"
+      "image": "./image/fridge.jpg",
+      "description": "This refrigerator offers ample space and energy-efficient cooling, making it ideal for modern kitchens. Comes with a spacious freezer and adjustable shelves for convenience."
     },
     {
+      "id": 2,
       "title": "Sharp and Durable Kitchen Knife",
       "price": "$29.99",
       "rating": "4.7",
-      "image": "./image/knife.jpg"
+      "image": "./image/knife.jpg",
+      "description": "A must-have for every kitchen, this knife boasts a sharp, durable blade perfect for slicing, dicing, and chopping with precision and ease."
     },
     {
+      "id": 3,
       "title": "Versatile and Powerful Mixer",
       "price": "$89.99",
       "rating": "4.6",
-      "image": "./image/mixer.jpg"
+      "image": "./image/mixer.jpg",
+      "description": "This versatile mixer can handle everything from kneading dough to whipping up meringue. With multiple speed settings and a powerful motor, it's a baker's dream."
     },
     {
+      "id": 4,
       "title": "Essential and Practical Spatula Set",
       "price": "$19.99",
       "rating": "4.3",
-      "image": "./image/spatula.jpg"
+      "image": "./image/spatula.jpg",
+      "description": "A practical spatula set for every kitchen. Heat-resistant and easy to clean, these spatulas are perfect for flipping, stirring, and spreading."
     },
     {
+      "id": 5,
       "title": "Precision and Stylish Cooking Stove",
       "price": "$499.99",
       "rating": "4.8",
-      "image": "./image/stove.jpg"
+      "image": "./image/stove.jpg",
+      "description": "This stylish cooking stove offers precise temperature control and a sleek design, making it perfect for both professional chefs and home cooks."
     },
     {
+      "id": 6,
       "title": "Durable and Versatile Cooking Pot",
       "price": "$39.99",
       "rating": "4.4",
-      "image": "./image/pot.jpg"
+      "image": "./image/pot.jpg",
+      "description": "This versatile pot is perfect for all your cooking needs, from soups to stews. It's durable, easy to clean, and compatible with all stovetops."
     }
-  ]
-  
+]

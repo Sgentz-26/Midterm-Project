@@ -31,13 +31,19 @@ document.addEventListener("DOMContentLoaded", function() {
     function createProductCard(product) {
       const card = document.createElement('div');
       card.classList.add('product-card');
+      card.style.cursor = "pointer";
+
+      const link = document.createElement('a');
+      link.href = `product_page.html?id=${product.id}`;
+
       card.innerHTML = `
         <img src="${product.image}" alt="${product.title}">
         <h5>${product.title}</h5>
         <p><strong>${product.price}</strong></p>
         <p>Rating: ${product.rating} ⭐</p>
       `;
-      return card;
+      link.appendChild(card);  // Wrap the card inside the clickable link
+      return link;
     }
   
     // Function to slide the carousel and recycle items
@@ -48,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (direction === 'next') {
         // Move the first item to the end (wrap around)
         const firstItem = items[0];
-        carousel.style.transition = "transform 0.5s ease"; // Smooth transition
+        carousel.style.transition = "transform 0.5s ease";
         carousel.style.transform = `translateX(-${productWidth + 20}px)`; // Slide left
         
         // After the transition ends, move the first item to the end
@@ -61,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Move the last item to the front (wrap around)
         const lastItem = items[items.length - 1];
         carousel.style.transition = "none"; // Disable transition to reposition instantly
-        carousel.style.transform = `translateX(-${productWidth + 20}px)`; // Preposition to left
+        carousel.style.transform = `translateX(-${productWidth + 20}px)`;
         carousel.insertBefore(lastItem, items[0]); // Move last item to the front
         
         // Re-enable transition and slide back to the initial position

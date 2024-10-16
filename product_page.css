@@ -1,0 +1,209 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    padding: 20px;
+}
+
+/* Header Styling */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-bottom: 4px solid black;
+    text-align: center;
+    opacity: 1;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo Styling */
+.logo {
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+/* Header Links Styling */
+header a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #ddd;
+}
+
+/* Category Button Styling */
+.btn-outline-secondary {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid white;
+    border-radius: 25px;
+    font-size: 14px;
+    padding: 5px 15px;
+    margin: 0 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Styling the search button background to white */
+.input-group .btn-outline-secondary {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 0 25px 25px 0;
+}
+
+.input-group .btn-outline-secondary:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Search bar */
+.input-group {
+    max-width: 400px;
+    margin: 20px auto;
+    display: flex; /* Ensures that input and button are inline */
+}
+
+.form-control {
+    border-radius: 25px 0 0 25px;
+    border: 2px solid black;
+    padding: 10px;
+    outline: none;
+}
+
+input::placeholder {
+    color: #333;
+}
+
+/* Footer Styling - Not relevant for Product Page but maintain consistency */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Product Page Specific Styles */
+.product-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Left Side: Product Image Section */
+.product-image-section {
+    position: relative;
+    width: 40%;
+    text-align: center;
+}
+
+#product-image {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 10px;
+}
+
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f0f0f0;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.carousel-prev {
+    left: -30px;
+}
+
+.carousel-next {
+    right: -30px;
+}
+
+.thumbnail-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.thumbnail-container img {
+    width: 50px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.thumbnail-container img:hover {
+    border-color: black;
+}
+
+/* Right Side: Product Info Section */
+.product-info {
+    width: 55%;
+}
+
+.product-info h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.product-info h2 {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.product-rating {
+    font-size: 20px;
+    color: gold;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.product-info p {
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    border: 2px solid black;
+    background-color: white;
+}
+
+.button-container button:hover {
+    background-color: #f0f0f0;
+}

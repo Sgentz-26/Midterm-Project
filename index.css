@@ -1,16 +1,15 @@
-/* General Header Styling */
 header {
-    background-color: #333; /* Dark background */
+    background-color: #333;
     color: #fff;
     padding: 20px;
-    border-bottom: 2px solid #dee2e6;
+    border-bottom: 4px solid black;
     text-align: center;
     opacity: 1;
 }
 
 /* Logo Styling */
 .logo {
-    color: #fff; /* White logo text */
+    color: #fff;
     font-size: 36px;
     font-weight: bold;
     margin: 0 10px;
@@ -18,7 +17,7 @@ header {
 
 /* Header links */
 header a {
-    color: #fff; /* White text for links */
+    color: #fff;
     text-decoration: none;
     margin: 0 15px;
     font-size: 16px;
@@ -26,18 +25,18 @@ header a {
 }
 
 header a:hover {
-    color: #ddd; /* Slightly lighter color on hover */
+    color: #ddd;
 }
 
 /* Category Button Styling */
 .btn-outline-secondary {
     background-color: transparent;
-    color: #fff; /* White text */
-    border: 2px solid white; /* White border */
+    color: #fff;
+    border: 2px solid white;
     border-radius: 25px;
     font-size: 14px;
     padding: 5px 15px;
-    margin: 0 5px; /* Adjust space between buttons */
+    margin: 0 5px;
     display: inline-block;
     cursor: pointer;
 }
@@ -50,20 +49,19 @@ header a:hover {
 }
 
 .input-group .btn-outline-secondary:hover {
-    background-color: #f0f0f0; /* Optional: Lighter background on hover */
-    color: #333; /* Ensure text/icon color remains dark */
+    background-color: #f0f0f0;
+    color: #333;
 }
-
 
 .btn-outline-secondary:hover {
     background-color: #fff;
-    color: #333; /* Dark text on hover */
+    color: #333;
 }
 
 /* Search bar */
 .input-group {
     max-width: 400px;
-    margin: 20px auto; /* Center the search bar */
+    margin: 20px auto;
     color: black;
 }
 
@@ -71,10 +69,11 @@ header a:hover {
     border-radius: 25px;
     border: 2px solid black;
     padding: 10px;
+    outline: none;
 }
 
 input::placeholder {
-    color: #333; /* Darker placeholder text */
+    color: #333;
 }
 
 /* Utility Class for Section Padding */
@@ -107,45 +106,61 @@ footer {
 .carousel-container {
     display: flex;
     align-items: center;
-    width: 100%; /* Full width */
-    margin: 20px 0; /* Adjust margin */
+    width: 100%;
+    margin: 20px 0;
     position: relative;
 }
 
 /* Carousel wrapper - make it full width */
 .carousel-wrapper {
     overflow: hidden;
-    width: 100%; /* Set to 100% to fill the screen */
-    max-width: none; /* Remove max-width constraint */
+    width: 100%;
+    max-width: none;
 }
 
 /* The carousel inner - this will be moved left and right */
 .carousel {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: 100%; /* Ensure carousel spans full width */
+    width: 100%;
 }
 
 /* Product card styling within the carousel */
+/* Product card styling within the carousel */
 .product-card {
-    flex: 0 0 20%; /* Show 5 products at a time */
+    flex: 0 0 20%; /* Ensure consistent product card size */
     margin: 0 10px;
     text-align: center;
+    padding: 15px;
 }
 
+/* Ensuring consistent image size */
 .product-card img {
-    width: 100%;
+    width: 100%; /* Ensure full width of container */
+    max-width: 250px; /* Maximum width */
+    height: auto; /* Maintain aspect ratio */
     border-radius: 10px;
+    display: block;
+    margin: 0 auto; /* Center images */
 }
 
-.product-card h5 {
-    font-size: 1.2rem;
-    margin: 10px 0;
+/* Override default link styles for product titles */
+.product-card a {
+    text-decoration: none; /* Remove underline from links */
+    color: #000; /* Set link text color to black */
 }
 
+.product-card a:hover {
+    color: #007bff; /* Optional: Change color on hover */
+}
+
+/* Rating styling */
 .product-card p {
-    font-size: 1rem;
     margin: 5px 0;
+}
+
+.product-card .rating {
+    color: gold;
 }
 
 /* Prev/Next button styling for the carousel */
@@ -159,19 +174,30 @@ footer {
     font-size: 2rem;
     cursor: pointer;
     padding: 10px;
-    z-index: 2; /* Ensure buttons are above carousel */
+    z-index: 2;
 }
 
 /* Adjust button positioning */
 .carousel-prev {
-    left: 0; /* Move to the left edge */
+    left: 0;
 }
 
 .carousel-next {
-    right: 0; /* Move to the right edge */
+    right: 0;
 }
 
 /* Hover effect for the carousel buttons */
 .carousel-prev:hover, .carousel-next:hover {
     background-color: rgba(0, 0, 0, 0.7);
+}
+
+main {
+    border-bottom: 4px solid black;
+}
+
+.featured-products {
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 36px;
 }
