@@ -10,12 +10,14 @@
     <header class="p-3">
         <div class="container d-flex justify-content-between align-items-center">
             <!-- Logo on the left -->
-            <div class="logo">LOGO</div>
+            <a href="index.html">
+                <div class="logo">LOGO</div>
+            </a>            
     
-            <!-- Search bar in the center -->
+            <!-- Search bar -->
             <div class="input-group mb-3 w-50 mx-auto">
-                <input type="text" class="form-control" placeholder="Type to Search..." aria-label="Search">
-                <button class="btn btn-outline-secondary" type="button">🔍</button>
+                <input type="text" class="form-control" id="searchInput" placeholder="Type to Search..." aria-label="Search">
+                <button class="btn btn-outline-secondary" id="searchButton" type="button">🔍</button>
             </div>
     
             <!-- Profile and Cart buttons on the right -->
@@ -58,5 +60,6 @@
     </main>
 
     <script src="product_page.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>

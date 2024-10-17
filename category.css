@@ -1,0 +1,180 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Header Styling */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-bottom: 4px solid black;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Logo Styling */
+.logo {
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+/* Header Links Styling */
+header a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #ddd;
+}
+
+/* Category Button Styling */
+.btn-outline-secondary {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid white;
+    border-radius: 25px;
+    font-size: 14px;
+    padding: 5px 15px;
+    margin: 0 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+button.btn-outline-secondary {
+    border-radius: 0 25px 25px 0;
+    border: 2px solid black;
+    border-left: none;
+    margin: 0;
+    padding: 10px 15px;
+    background-color: white;
+    outline: none;
+    cursor: pointer;
+}
+
+.input-group .btn-outline-secondary:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Search bar */
+.input-group {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 400px
+}
+
+.form-control {
+    border-radius: 25px 0 0 25px;
+    border: 2px solid black;
+    border-right: none;
+    padding: 10px;
+    outline: none;
+    flex: 1;
+}
+
+input::placeholder {
+    color: #333;
+}
+
+#category-title {
+    padding: 25px;
+    width: 100%;
+    text-align: center;
+    justify-content: center !important;
+}
+
+
+/* Product Grid Styling */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px; /* Space between products */
+    padding: 20px;
+}
+
+.product-card {
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensuring consistent image size */
+.product-card img {
+    width: 100%;
+    max-width: 150px; /* Limit the maximum width of the images */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Override default link styles for product titles */
+.product-card h5 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.product-card p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.product-card .rating {
+    color: gold;
+}
+
+.sorting-options {
+    margin: 20px;
+    text-align: center;
+}
+
+.sorting-options label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.sorting-options select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}

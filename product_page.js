@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
     function displayProductDetails(product) {
+        document.title = product.title;
         document.getElementById('product-title').textContent = product.title;
         document.getElementById('product-manufacturer').textContent = product.manufacturer || 'Manufacturer';  // Add manufacturer if available
         document.getElementById('product-price').textContent = product.price;

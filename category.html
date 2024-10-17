@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Page</title>
+    <link rel="stylesheet" href="category.css">
+</head>
+<body>
+    <header class="p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <!-- Logo on the left -->
+            <a href="index.html">
+                <div class="logo">LOGO</div>
+            </a>            
+    
+            <!-- Search bar -->
+            <div class="input-group mb-3 w-50 mx-auto">
+                <input type="text" class="form-control" id="searchInput" placeholder="Type to Search..." aria-label="Search">
+                <button class="btn btn-outline-secondary" id="searchButton" type="button">🔍</button>
+            </div>
+    
+            <!-- Profile and Cart buttons on the right -->
+            <div class="user-cart">
+                <a href="profile.html" class="btn btn-outline-secondary me-2">👤</a>
+                <a href="cart.html" class="btn btn-outline-secondary">🛒</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1 id="category-title">Category Name</h1>
+    
+        <!-- Sorting Options -->
+        <div class="sorting-options">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+                <option value="default">Default</option>
+                <option value="price-low-to-high">Price: Low to High</option>
+                <option value="price-high-to-low">Price: High to Low</option>
+                <option value="rating-low-to-high">Rating: Low to High</option>
+                <option value="rating-high-to-low">Rating: High to Low</option>
+            </select>
+        </div>
+    
+        <div class="product-grid" id="productGrid">
+            <!-- Products will be injected here by JavaScript -->
+        </div>
+    </main>
+    
+
+    <footer>
+        <!-- Add your footer content here -->
+    </footer>
+
+    <script src="category.js"></script>
+    <script src="search.js"></script>
+</body>
+</html>

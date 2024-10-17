@@ -27,9 +27,9 @@
       <!-- Logo and Categories (Vertically Centered, Closer) -->
       <div class="d-flex justify-content-center align-items-center mb-2 flex-wrap">
         <div class="d-flex me-3">
-          <a href="category1.html" class="btn btn-outline-secondary me-2">Category 1</a>
-          <a href="category2.html" class="btn btn-outline-secondary">Category 2</a>
-        </div>
+          <a href="category.html?category=Appliances" class="btn btn-outline-secondary me-2">Appliances</a>
+          <a href="category.html?category=Kitchenware" class="btn btn-outline-secondary">Kitchenware</a>
+      </div>      
         
         <!-- Logo Centered -->
         <h1 class="logo mx-3">LOGO</h1>
@@ -42,8 +42,8 @@
 
       <!-- Search bar -->
       <div class="input-group mb-3 w-50 mx-auto">
-        <input type="text" class="form-control" placeholder="Type to Search..." aria-label="Search">
-        <button class="btn btn-outline-secondary" type="button">🔍</button>
+        <input type="text" class="form-control" id="searchInput" placeholder="Type to Search..." aria-label="Search">
+        <button class="btn btn-outline-secondary" id="searchButton" type="button">🔍</button>
       </div>
     </div>
   </header>
@@ -71,5 +71,6 @@
   </footer>
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="index.js"></script>
+  <script src="search.js"></script>
 </body>
 </html>
