@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let productWidth;
     
     // Fetch product data from JSON file
-    fetch('products.json')
+    fetch('data.json')
       .then(response => response.json())
       .then(products => {
         const carousel = document.getElementById('carouselItems');

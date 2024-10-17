@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.title = category;
 
         // Fetch product data from the JSON file
-        fetch('products.json')
+        fetch('data.json')
             .then(response => response.json())
             .then(products => {
                 // Filter products based on category

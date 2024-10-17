@@ -58,5 +58,45 @@
     "description": "This versatile pot is perfect for all your cooking needs, from soups to stews. It's durable, easy to clean, and compatible with all stovetops.",
     "category": "Kitchenware",
     "tags": ["pot", "cooking", "kitchenware", "soup", "stew", "durable"]
+  },
+  {
+    "id": 7,
+    "title": "Nike Air Force 1 Classic Sneakers",
+    "price": "$120.00",
+    "rating": "4.9",
+    "image": "./image/AIRFORCE1.png",
+    "description": "Originally released in 1982, the Nike Air Force 1 is a timeless sneaker featuring Nike's Air cushioning technology. Its clean design and durability make it a staple in both sports and streetwear.",
+    "category": "Footwear",
+    "tags": ["Nike", "sneakers", "Air Force 1", "basketball", "streetwear"]
+  },
+  {
+    "id": 8,
+    "title": "Adidas Low-Top Signature Sneakers",
+    "price": "$85.00",
+    "rating": "4.7",
+    "image": "./image/Adidas.png",
+    "description": "Featuring Adidas' classic three stripes and a combination of synthetic leather and textile upper, these sneakers provide comfort and durability with a vintage aesthetic.",
+    "category": "Footwear",
+    "tags": ["Adidas", "sneakers", "low-top", "vintage", "comfort"]
+  },
+  {
+    "id": 9,
+    "title": "New Balance 574 Suede Mesh Sneakers",
+    "price": "$75.00",
+    "rating": "4.6",
+    "image": "./image/newbalance.png",
+    "description": "The New Balance 574 blends suede and mesh for durability and breathability. Its ENCAP midsole technology provides cushioning and support, making it a go-to sneaker for both style and comfort.",
+    "category": "Footwear",
+    "tags": ["New Balance", "sneakers", "574", "ENCAP", "comfort"]
+  },
+  {
+    "id": 10,
+    "title": "Skechers Flex Advantage Walking Shoes",
+    "price": "$60.00",
+    "rating": "4.5",
+    "image": "./image/Sketchers.jpg",
+    "description": "The Skechers Flex Advantage features a flexible rubber outsole and shock absorption for a comfortable walking experience. Its casual style and comfort make it ideal for everyday wear.",
+    "category": "Footwear",
+    "tags": ["Skechers", "walking", "flexible", "comfortable", "casual"]
   }
 ]

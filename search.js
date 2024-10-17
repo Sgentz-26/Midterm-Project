@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let products = [];
 
     // Fetch product data from JSON file
-    fetch('products.json')
+    fetch('data.json')
         .then(response => response.json())
         .then(data => {
             products = data;
