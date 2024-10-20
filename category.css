@@ -158,3 +158,17 @@ input::placeholder {
     border: 1px solid #ccc;
     font-size: 16px;
 }
+
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+h2.about a {
+    text-decoration: underline;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+}

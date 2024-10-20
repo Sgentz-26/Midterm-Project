@@ -203,3 +203,17 @@ footer {
 .button-container button:hover {
     background-color: #f0f0f0;
 }
+
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+h2.about a {
+    text-decoration: underline;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+}
