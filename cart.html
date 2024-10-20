@@ -9,30 +9,15 @@
     <link rel="stylesheet" href="cart.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="category2.html">Shoes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="category.html">Kitchen</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <header class="py-4 bg-dark text-white text-center d-flex justify-content-between align-items-center px-3">
+        <!-- Back Arrow -->
+        <button onclick="history.back()" class="btn btn-outline-light">Continue Shopping</button>
     
-    <header class="py-4 bg-dark text-white text-center">
-        <h1>Your Cart</h1>
+        <!-- Cart Title -->
+        <h1 class="flex-grow-1 text-center">Your Cart</h1>
+    
+        <!-- Profile Icon -->
+        <div class="d-flex justify-content-end"><a href="profile.html" class="btn btn-outline-secondary me-2">👤</a></div>
     </header>
     
     <main class="container my-4">

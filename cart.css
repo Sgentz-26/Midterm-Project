@@ -77,3 +77,21 @@ footer h2.about a {
 footer p {
     margin-bottom: 1rem;
 }
+
+/* Category Button Styling */
+.btn-outline-secondary {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid white;
+    border-radius: 25px;
+    font-size: 14px;
+    padding: 5px 15px;
+    margin: 0 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #fff;
+    color: #333;
+}

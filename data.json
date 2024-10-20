@@ -7,7 +7,8 @@
     "image": "./image/fridge.jpg",
     "description": "This refrigerator offers ample space and energy-efficient cooling, making it ideal for modern kitchens. Comes with a spacious freezer and adjustable shelves for convenience.",
     "category": "Appliances",
-    "tags": ["refrigerator", "appliances", "energy-efficient", "kitchen"]
+    "tags": ["refrigerator", "appliances", "energy-efficient", "kitchen"],
+    "manufacturer": "Samsung"
   },
   {
     "id": 2,
