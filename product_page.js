@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const productId = urlParams.get('id'); 
+    const productId = urlParams.get('id');
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -22,18 +22,55 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('product-manufacturer').textContent = product.manufacturer || 'Unknown Manufacturer';
         document.getElementById('product-price').textContent = product.price;
         document.getElementById('product-description').textContent = product.description || 'No description available';
-        
+
         const productImage = document.getElementById('product-image');
-        productImage.src = product.image;
-        
-        const ratingContainer = document.getElementById('product-rating');
-        ratingContainer.innerHTML = '';
-        for (let i = 0; i < Math.floor(product.rating); i++) {
-            ratingContainer.innerHTML += '⭐';
+        const carouselPrev = document.getElementById('carousel-prev');
+        const carouselNext = document.getElementById('carousel-next');
+        const thumbnailContainer = document.getElementById('thumbnail-container');
+
+        let currentIndex = 0;
+
+        // Handle multiple images
+        if (product.images && product.images.length > 1) {
+            // Display the first image
+            productImage.src = product.images[currentIndex];
+
+            // Create thumbnails
+            thumbnailContainer.innerHTML = '';
+            product.images.forEach((imgSrc, index) => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.classList.add('thumbnail');
+                img.addEventListener('click', () => {
+                    productImage.src = imgSrc;
+                    currentIndex = index; // Update current index
+                });
+                thumbnailContainer.appendChild(img);
+            });
+
+            // Show navigation arrows if more than one image
+            carouselPrev.style.display = 'block';
+            carouselNext.style.display = 'block';
+
+            // Add event listeners for previous and next buttons
+            carouselPrev.addEventListener('click', () => {
+                currentIndex = (currentIndex === 0) ? product.images.length - 1 : currentIndex - 1;
+                productImage.src = product.images[currentIndex];
+            });
+
+            carouselNext.addEventListener('click', () => {
+                currentIndex = (currentIndex === product.images.length - 1) ? 0 : currentIndex + 1;
+                productImage.src = product.images[currentIndex];
+            });
+        } else {
+            // Single image - hide carousel arrows
+            productImage.src = product.image || product.images[0];
+            carouselPrev.style.display = 'none';
+            carouselNext.style.display = 'none';
         }
 
         const addToCartButton = document.querySelector('.add-to-cart-btn');
-        
+
         // Add click event to the "Add to Cart" button
         addToCartButton.addEventListener('click', function() {
             addToCart(product, addToCartButton);
@@ -57,11 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         localStorage.setItem('cart', JSON.stringify(cart));  // Save cart to localStorage
         updateCartTotal();
-        
+
         // Add success class and change text
         button.textContent = "Added to Cart!";
         button.classList.add('success');
-        
+
         // Revert back after 2 seconds
         setTimeout(() => {
             button.classList.remove('success');

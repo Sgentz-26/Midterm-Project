@@ -4,7 +4,7 @@
     "title": "Spacious and Efficient Refrigerator",
     "price": "$799.99",
     "rating": "4.5",
-    "image": "./image/fridge.jpg",
+    "images": ["./image/fridge.jpg"],
     "description": "This refrigerator offers ample space and energy-efficient cooling, making it ideal for modern kitchens. Comes with a spacious freezer and adjustable shelves for convenience.",
     "category": "Appliances",
     "tags": ["refrigerator", "appliances", "energy-efficient", "kitchen"],
@@ -15,7 +15,7 @@
     "title": "Sharp and Durable Kitchen Knife",
     "price": "$29.99",
     "rating": "4.7",
-    "image": "./image/knife.jpg",
+    "images": ["./image/knife.jpg"],
     "description": "A must-have for every kitchen, this knife boasts a sharp, durable blade perfect for slicing, dicing, and chopping with precision and ease.",
     "category": "Kitchenware",
     "tags": ["knife", "kitchen", "sharp", "cutting", "cooking", "kitchenware"]
@@ -25,7 +25,7 @@
     "title": "Versatile and Powerful Mixer",
     "price": "$89.99",
     "rating": "4.6",
-    "image": "./image/mixer.jpg",
+    "images": ["./image/mixer.jpg"],
     "description": "This versatile mixer can handle everything from kneading dough to whipping up meringue. With multiple speed settings and a powerful motor, it's a baker's dream.",
     "category": "Kitchenware",
     "tags": ["mixer", "baking", "cooking", "kitchenware", "kneading", "whisk"]
@@ -35,7 +35,7 @@
     "title": "Essential and Practical Spatula Set",
     "price": "$19.99",
     "rating": "4.3",
-    "image": "./image/spatula.jpg",
+    "images": ["./image/spatula.jpg"],
     "description": "A practical spatula set for every kitchen. Heat-resistant and easy to clean, these spatulas are perfect for flipping, stirring, and spreading.",
     "category": "Kitchenware",
     "tags": ["spatula", "kitchenware", "flipping", "cooking", "heat-resistant"]
@@ -45,7 +45,7 @@
     "title": "Precision and Stylish Cooking Stove",
     "price": "$499.99",
     "rating": "4.8",
-    "image": "./image/stove.jpg",
+    "images": ["./image/stove.jpg"],
     "description": "This stylish cooking stove offers precise temperature control and a sleek design, making it perfect for both professional chefs and home cooks.",
     "category": "Appliances",
     "tags": ["stove", "appliances", "cooking", "kitchen", "temperature control"]
@@ -55,7 +55,7 @@
     "title": "Durable and Versatile Cooking Pot",
     "price": "$39.99",
     "rating": "4.4",
-    "image": "./image/pot.jpg",
+    "images": ["./image/pot.jpg"],
     "description": "This versatile pot is perfect for all your cooking needs, from soups to stews. It's durable, easy to clean, and compatible with all stovetops.",
     "category": "Kitchenware",
     "tags": ["pot", "cooking", "kitchenware", "soup", "stew", "durable"]
@@ -65,7 +65,7 @@
     "title": "Nike Air Force 1 Classic Sneakers",
     "price": "$120.00",
     "rating": "4.9",
-    "image": "./image/AIRFORCE1.png",
+    "images": ["./image/AIRFORCE1.png"],
     "description": "Originally released in 1982, the Nike Air Force 1 is a timeless sneaker featuring Nike's Air cushioning technology. Its clean design and durability make it a staple in both sports and streetwear.",
     "category": "Footwear",
     "tags": ["Nike", "sneakers", "Air Force 1", "basketball", "streetwear"]
@@ -75,7 +75,7 @@
     "title": "Adidas Low-Top Signature Sneakers",
     "price": "$85.00",
     "rating": "4.7",
-    "image": "./image/Adidas.png",
+    "images": ["./image/Adidas.png"],
     "description": "Featuring Adidas' classic three stripes and a combination of synthetic leather and textile upper, these sneakers provide comfort and durability with a vintage aesthetic.",
     "category": "Footwear",
     "tags": ["Adidas", "sneakers", "low-top", "vintage", "comfort"]
@@ -85,7 +85,7 @@
     "title": "New Balance 574 Suede Mesh Sneakers",
     "price": "$75.00",
     "rating": "4.6",
-    "image": "./image/newbalance.png",
+    "images": ["./image/newbalance.png"],
     "description": "The New Balance 574 blends suede and mesh for durability and breathability. Its ENCAP midsole technology provides cushioning and support, making it a go-to sneaker for both style and comfort.",
     "category": "Footwear",
     "tags": ["New Balance", "sneakers", "574", "ENCAP", "comfort"]
@@ -95,7 +95,7 @@
     "title": "Skechers Flex Advantage Walking Shoes",
     "price": "$60.00",
     "rating": "4.5",
-    "image": "./image/Sketchers.jpg",
+    "images": ["./image/Sketchers.jpg"],
     "description": "The Skechers Flex Advantage features a flexible rubber outsole and shock absorption for a comfortable walking experience. Its casual style and comfort make it ideal for everyday wear.",
     "category": "Footwear",
     "tags": ["Skechers", "walking", "flexible", "comfortable", "casual"]
