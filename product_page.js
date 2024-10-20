@@ -121,4 +121,10 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('cartTotal', total.toFixed(2));  // Save total to localStorage
     }
 
+    const saveLaterButton = document.querySelector('.save-later-btn');
+
+    // Add click event listener to the Save for Later button
+    saveLaterButton.addEventListener('click', function() {
+        alert('This feature is not yet available.');
+    });
 });

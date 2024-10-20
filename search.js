@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Add event listener to the search input for the "Enter" key
             document.getElementById('searchInput').addEventListener('keypress', function(event) {
                 if (event.key === 'Enter') {
-                    event.preventDefault(); // Prevent form submission or other default actions
+                    event.preventDefault();
                     performSearch();
                 }
             });
