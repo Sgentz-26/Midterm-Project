@@ -9,31 +9,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Add event listener to the search button after products are loaded
             document.getElementById('searchButton').addEventListener('click', function() {
-                const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+                performSearch();
+            });
 
-                // If no search term, do nothing
-                if (!searchTerm) return;
-
-                // Filter products by search term
-                const filteredProducts = products.filter(product => {
-                    const titleMatch = product.title.toLowerCase().includes(searchTerm);
-                    const tagMatch = product.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-                    return titleMatch || tagMatch;
-                });
-
-                // Redirect to category page with search results
-                if (filteredProducts.length > 0) {
-                    displaySearchResults(filteredProducts);
-                } else {
-                    alert("No products found for your search.");
+            // Add event listener to the search input for the "Enter" key
+            document.getElementById('searchInput').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Prevent form submission or other default actions
+                    performSearch();
                 }
             });
         });
 
+    // Function to perform the search
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+
+        // If no search term, do nothing
+        if (!searchTerm) return;
+
+        // Filter products by search term
+        const filteredProducts = products.filter(product => {
+            const titleMatch = product.title.toLowerCase().includes(searchTerm);
+            const tagMatch = product.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+            return titleMatch || tagMatch;
+        });
+
+        // Redirect to category page with search results
+        if (filteredProducts.length > 0) {
+            displaySearchResults(filteredProducts);
+        } else {
+            alert("No products found for your search.");
+        }
+    }
+
     // Function to display search results
     function displaySearchResults(filteredProducts) {
-        // Store filtered products in sessionStorage
         sessionStorage.setItem('filteredProducts', JSON.stringify(filteredProducts));
-        window.location.href = "category.html"; // Redirect to category page
+        window.location.href = "category.html";
     }
 });
