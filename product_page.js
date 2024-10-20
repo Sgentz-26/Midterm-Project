@@ -27,6 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const carouselPrev = document.getElementById('carousel-prev');
         const carouselNext = document.getElementById('carousel-next');
         const thumbnailContainer = document.getElementById('thumbnail-container');
+        const ratingContainer = document.getElementById('product-rating');
+
+        ratingContainer.innerHTML = '';
+        for (let i = 0; i < Math.floor(product.rating); i++) {
+            ratingContainer.innerHTML += '⭐';
+        }
 
         let currentIndex = 0;
 

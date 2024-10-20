@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
         card.classList.add('product-card');
 
         card.innerHTML = `
-            <img src="${product.image}" alt="${product.title}">
+            <img src="${product.images[0]}" alt="${product.title}">
             <h5>${product.title}</h5>
             <p><strong>${product.price}</strong></p>
             <p>Rating: ${product.rating} ⭐</p>
