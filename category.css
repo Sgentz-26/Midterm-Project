@@ -1,42 +1,22 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-/* Header Styling */
 header {
     background-color: #333;
     color: #fff;
     padding: 20px;
     border-bottom: 4px solid black;
     text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+    opacity: 1;
 }
 
 /* Logo Styling */
-.logo {
+h1.logo a {
+    text-decoration: none;
     color: #fff;
     font-size: 36px;
     font-weight: bold;
+    margin: 0 10px;
 }
 
-/* Header Links Styling */
+/* Header links */
 header a {
     color: #fff;
     text-decoration: none;
@@ -62,15 +42,12 @@ header a:hover {
     cursor: pointer;
 }
 
-button.btn-outline-secondary {
-    border-radius: 0 25px 25px 0;
-    border: 2px solid black;
-    border-left: none;
-    margin: 0;
-    padding: 10px 15px;
+/* Styling the search button background to white */
+.input-group .btn-outline-secondary {
     background-color: white;
-    outline: none;
-    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 0 25px 25px 0;
+    border-left: none;
 }
 
 .input-group .btn-outline-secondary:hover {
@@ -85,24 +62,28 @@ button.btn-outline-secondary {
 
 /* Search bar */
 .input-group {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: stretch;
-    max-width: 400px
+    max-width: 400px;
+    margin: 20px auto;
+    color: black;
 }
 
 .form-control {
-    border-radius: 25px 0 0 25px;
+    border-radius: 25px;
     border: 2px solid black;
     border-right: none;
     padding: 10px;
     outline: none;
-    flex: 1;
 }
 
 input::placeholder {
     color: #333;
+}
+
+/* Utility Class for Section Padding */
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+    text-align: center;
 }
 
 #category-title {
@@ -111,7 +92,6 @@ input::placeholder {
     text-align: center;
     justify-content: center !important;
 }
-
 
 /* Product Grid Styling */
 .product-grid {

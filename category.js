@@ -91,7 +91,6 @@ document.addEventListener("DOMContentLoaded", function() {
             <p>Rating: ${product.rating} ⭐</p>
             <a href="product_page.html?id=${product.id}">View Product</a>
         `;
-
         return card;
     }
 });
