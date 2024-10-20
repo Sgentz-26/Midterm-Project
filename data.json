@@ -108,5 +108,49 @@
     "category": "Footwear",
     "tags": ["Skechers", "walking", "flexible", "comfortable", "casual"],
     "manufacturer": "Skechers"
-  }
+  },
+  {
+    "id": 11,
+    "title": "Carhartt Men's Rain Defender Loose Fit Heavyweight Sweatshirt",
+    "price": "$59.99",
+    "rating": "4.8",
+    "images": ["./image/Carhartt.png"],
+    "description": "The Carhartt Men's Rain Defender Loose Fit Heavyweight Sweatshirt is perfect for cold and wet weather. Featuring a durable, water-repellent finish and heavyweight cotton blend fabric, it keeps you warm and dry while ensuring comfort with a loose fit design.",
+    "category": "Clothing",
+    "tags": ["Carhartt", "sweatshirt", "rain defender", "heavyweight", "loose fit", "water-repellent"],
+    "manufacturer": "Carhartt"
+  },
+  {
+    "id": 12,
+    "title": "Fruit of the Loom Men's Eversoft Fleece Sweatshirts, Moisture Wicking & Breathable, Crewneck Sweatshirt",
+    "price": "$10.44",
+    "rating": "4.6",
+    "images": ["./image/fruit_of_the_loom.png"],
+    "description": "The Fruit of the Loom Men's Eversoft Fleece Sweatshirt is made from a soft and breathable fabric, featuring moisture-wicking properties to keep you dry and comfortable. Ideal for everyday wear, this crewneck sweatshirt offers excellent value and durability.",
+    "category": "Clothing",
+    "tags": ["Fruit of the Loom", "sweatshirt", "fleece", "moisture wicking", "breathable", "crewneck"],
+    "manufacturer": "Fruit of the Loom"
+  },
+  {
+    "id": 13,
+    "title": "Hanes Men's Hoodie, EcoSmart Fleece Hoodie, Hooded Sweatshirt for Men",
+    "price": "$14.66",
+    "rating": "4.5",
+    "images": ["./image/hanes_hoodie.png"],
+    "description": "The Hanes Men's EcoSmart Fleece Hoodie is made with up to 5% recycled polyester from plastic bottles. This hooded sweatshirt is soft, comfortable, and eco-friendly, making it a great choice for casual wear while helping the environment.",
+    "category": "Clothing",
+    "tags": ["Hanes", "hoodie", "fleece", "EcoSmart", "recycled", "comfortable", "sustainable"],
+    "manufacturer": "Hanes"
+  },
+  {
+    "id": 14,
+    "title": "Champion Men's Hoodie, Powerblend, Fleece Men's Hoodie",
+    "price": "$35.98",
+    "rating": "4.7",
+    "images": ["./image/champion_sweatshirt.png"],
+    "description": "The Champion Men's Powerblend Hoodie is a durable and comfortable fleece sweatshirt, designed with a blend of cotton and polyester for reduced pilling and shrinkage. Perfect for layering, this hoodie offers warmth and a classic fit.",
+    "category": "Clothing",
+    "tags": ["Champion", "hoodie", "Powerblend", "fleece", "comfortable", "classic fit", "durable"],
+    "manufacturer": "Champion"
+  }  
 ]
