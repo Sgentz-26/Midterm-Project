@@ -1,3 +1,11 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Styling */
 header {
     background-color: #333;
     color: #fff;
@@ -5,81 +13,67 @@ header {
     margin: 0 auto;
 }
 
-.col {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.col:hover {
-    transform: scale(1.05);
-    z-index: 1;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
+/* Navbar Styling */
 .navbar {
     background-color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 10px;
-}
-
-.navbar-nav {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    margin: 0px;
-    padding: 0;
-    align-items: center;
-}
-
-.nav-item {
-    margin-right: 15px;
 }
 
 .navbar-brand {
     color: #fff;
     font-weight: bold;
-    margin-right: 20px;
     text-decoration: none;
 }
 
-.navbar-brand:hover {
-    color: #fff;
-}
-
-.nav-link {
+.navbar-nav .nav-link {
     color: #fff;
     font-weight: bold;
-    text-decoration: none;
 }
 
-.nav-link:hover {
-    color: #fff;
-    text-decoration: underline;
+.navbar-nav .nav-link:hover {
+    color: #ddd;
 }
 
-.about-section {
-    padding-left: 20px;
+/* Main Cart Table */
+.table-responsive {
+    margin-top: 20px;
+}
+
+.table thead {
+    background-color: #444;
+    color: white;
+}
+
+.table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+/* Cart Total and Checkout Button */
+#cartTotal {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#checkoutButton {
+    font-size: 1.2rem;
+    padding: 10px 20px;
 }
 
 /* Footer Styling */
 footer {
     background-color: #333;
     color: #fff;
-    text-align: center;
 }
 
-h2.about a {
-    text-decoration: underline;
+footer h2.about a {
     color: #fff;
     font-size: 28px;
     font-weight: bold;
 }
 
-.about-section {
-    text-align: center;
-}
-
-.py-5 {
-    text-align: center;
+footer p {
+    margin-bottom: 1rem;
 }

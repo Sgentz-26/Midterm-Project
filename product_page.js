@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const productId = urlParams.get('id');  // Get product ID from URL
+    const productId = urlParams.get('id'); 
 
-    let cart = JSON.parse(localStorage.getItem('cart')) || []; // Get cart from localStorage or initialize as empty
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     fetch('data.json')
         .then(response => response.json())
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayProductDetails(product) {
         document.title = product.title;
         document.getElementById('product-title').textContent = product.title;
-        document.getElementById('product-manufacturer').textContent = product.manufacturer || 'Manufacturer';  // Add manufacturer if available
+        document.getElementById('product-manufacturer').textContent = product.manufacturer || 'Unknown Manufacturer';
         document.getElementById('product-price').textContent = product.price;
         document.getElementById('product-description').textContent = product.description || 'No description available';
         
@@ -31,9 +31,17 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < Math.floor(product.rating); i++) {
             ratingContainer.innerHTML += '⭐';
         }
+
+        const addToCartButton = document.querySelector('.add-to-cart-btn');
+        
+        // Add click event to the "Add to Cart" button
+        addToCartButton.addEventListener('click', function() {
+            addToCart(product, addToCartButton);
+        });
     }
+
     // Function to add the product to the cart
-    function addToCart(product) {
+    function addToCart(product, button) {
         const existingProduct = cart.find(item => item.id == product.id);
 
         if (existingProduct) {
@@ -48,8 +56,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));  // Save cart to localStorage
-        alert(`${product.title} has been added to your cart!`);
-        updateCartTotal();  // Update cart total
+        updateCartTotal();
+        
+        // Add success class and change text
+        button.textContent = "Added to Cart!";
+        button.classList.add('success');
+        
+        // Revert back after 2 seconds
+        setTimeout(() => {
+            button.classList.remove('success');
+            button.textContent = "Add to Cart";
+        }, 1500);
     }
 
     // Function to update the cart total in localStorage
