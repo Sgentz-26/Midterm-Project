@@ -1,0 +1,12 @@
+{
+  "name": "final-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm start --prefix frontend\" \"node backend/index.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
