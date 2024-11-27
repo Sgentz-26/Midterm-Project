@@ -1,7 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Homepage from "./Homepage"; // Import your Homepage component
-import "./App.css"; // Keep or replace with your main styling
+import Homepage from "./Homepage";
+import ProductPage from "./ProductPage";
+import CategoryPage from "./CategoryPage";
+import AboutPage from "./AboutPage";
+import "./App.css";
 
 function App() {
   return (
@@ -10,7 +13,9 @@ function App() {
         <Routes>
           {/* Define routes for your app */}
           <Route path="/" element={<Homepage />} />
-          {/* Add other routes here if needed */}
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/category/:category" element={<CategoryPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </div>
     </Router>

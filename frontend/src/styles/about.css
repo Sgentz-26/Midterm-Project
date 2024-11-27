@@ -1,58 +1,5 @@
-/* Resetting margin and padding */
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* Main Element Styling */
-main {
-    max-width: 800px;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Heading Styling */
-main h1 {
-    font-size: 36px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #333;
-    padding-bottom: 10px;
-}
-
-/* About Section Styling */
-.about-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* About Details Styling */
-.about-details p {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-/* Highlighting labels like Course Name, Student Names, etc. */
-.about-details strong {
-    color: #333;
-}
-
-header {
+/* Header Styling */
+.about-page header {
     background-color: #333;
     color: #fff;
     padding: 20px;
@@ -62,7 +9,7 @@ header {
 }
 
 /* Logo Styling */
-h1.logo a {
+.about-page h1.logo a {
     text-decoration: none;
     color: #fff;
     font-size: 36px;
@@ -70,8 +17,8 @@ h1.logo a {
     margin: 0 10px;
 }
 
-/* Header links */
-header a {
+/* Header Links Styling */
+.about-page header a {
     color: #fff;
     text-decoration: none;
     margin: 0 15px;
@@ -79,12 +26,8 @@ header a {
     font-weight: bold;
 }
 
-header a:hover {
-    color: #ddd;
-}
-
 /* Category Button Styling */
-.btn-outline-secondary {
+.about-page .btn-outline-secondary {
     background-color: transparent;
     color: #fff;
     border: 2px solid white;
@@ -96,32 +39,33 @@ header a:hover {
     cursor: pointer;
 }
 
-/* Styling the search button background to white */
-.input-group .btn-outline-secondary {
+/* Hover effects for buttons */
+.about-page .btn-outline-secondary:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Styling the search button background */
+.about-page .input-group .btn-outline-secondary {
     background-color: white;
     border: 2px solid black;
     border-radius: 0 25px 25px 0;
     border-left: none;
 }
 
-.input-group .btn-outline-secondary:hover {
+.about-page .input-group .btn-outline-secondary:hover {
     background-color: #f0f0f0;
     color: #333;
 }
 
-.btn-outline-secondary:hover {
-    background-color: #fff;
-    color: #333;
-}
-
 /* Search bar */
-.input-group {
+.about-page .input-group {
     max-width: 400px;
     margin: 20px auto;
     color: black;
 }
 
-.form-control {
+.about-page .form-control {
     border-radius: 25px;
     border: 2px solid black;
     border-right: none;
@@ -129,19 +73,53 @@ header a:hover {
     outline: none;
 }
 
-input::placeholder {
+.about-page input::placeholder {
     color: #333;
 }
 
-/* Utility Class for Section Padding */
-.py-5 {
-    padding-top: 3rem !important;
-    padding-bottom: 3rem !important;
+/* Main Content Styling */
+.about-page main {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Styling */
+.about-page main h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
     text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+/* About Section Styling */
+.about-page .about-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* About Details Styling */
+.about-page .about-details p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Highlighting labels like Course Name, Student Names, etc. */
+.about-page .about-details strong {
+    color: #333;
 }
 
 /* Footer Styling */
-footer {
+.about-page footer {
     background-color: #333;
     color: #fff;
     text-align: center;
