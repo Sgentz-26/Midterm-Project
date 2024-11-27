@@ -1,9 +1,51 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/about.css";
 
 const AboutPage = () => {
+  const [searchTerm, setSearchTerm] = useState(""); // State for search input
+  const navigate = useNavigate(); // Hook for navigation
+
+  const performSearch = () => {
+    const trimmedSearchTerm = searchTerm.toLowerCase().trim();
+
+    if (!trimmedSearchTerm) {
+      alert("Please enter a search term.");
+      return;
+    }
+
+    // Fetch all products and filter by search term
+    fetch("http://localhost:5000/api/products")
+      .then((response) => response.json())
+      .then((products) => {
+        const filteredProducts = products.filter((product) => {
+          const titleMatch = product.title.toLowerCase().includes(trimmedSearchTerm);
+          const tagMatch =
+            product.tags &&
+            product.tags.some((tag) => tag.toLowerCase().includes(trimmedSearchTerm));
+
+          return titleMatch || tagMatch;
+        });
+
+        if (filteredProducts.length > 0) {
+          // Always overwrite sessionStorage with new results
+          sessionStorage.setItem("filteredProducts", JSON.stringify(filteredProducts));
+          navigate("/category/search-results"); // Navigate to the search results
+        } else {
+          alert("No products found for your search.");
+        }
+      })
+      .catch((error) => console.error("Error performing search:", error));
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      performSearch();
+    }
+  };
+
   return (
     <div className="about-page">
       {/* Header */}
@@ -32,8 +74,18 @@ const AboutPage = () => {
               className="form-control"
               id="searchInput"
               placeholder="Type to Search..."
+              value={searchTerm} // Bind input to searchTerm
+              onChange={(e) => setSearchTerm(e.target.value)} // Update state
+              onKeyDown={handleKeyPress} // Trigger search on Enter
             />
-            <button className="btn btn-outline-secondary" id="searchButton" type="button">🔍</button>
+            <button
+              className="btn btn-outline-secondary"
+              id="searchButton"
+              type="button"
+              onClick={performSearch} // Trigger search on button click
+            >
+              🔍
+            </button>
           </div>
         </div>
       </header>

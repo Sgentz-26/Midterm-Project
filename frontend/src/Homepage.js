@@ -157,7 +157,7 @@ const Homepage = () => {
               aria-label="Search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)} // Update search term
-              onKeyPress={handleKeyPress} // Handle Enter key press
+              onKeyDown={handleKeyPress} // Trigger search on Enter
             />
             <button
               className="btn btn-outline-secondary"

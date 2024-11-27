@@ -190,7 +190,7 @@ const CategoryPage = () => {
               placeholder="Type to Search..."
               value={searchTerm} // Bind input to searchTerm
               onChange={(e) => setSearchTerm(e.target.value)} // Update state
-              onKeyPress={handleKeyPress} // Trigger search on Enter
+              onKeyDown={handleKeyPress} // Trigger search on Enter
             />
             <button
               className="btn btn-outline-secondary"
