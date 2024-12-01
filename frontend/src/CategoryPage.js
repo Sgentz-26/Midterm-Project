@@ -1,100 +1,97 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/category.css";
 
 const CategoryPage = () => {
-    const { category } = useParams(); // Get category from URL
-    const [products, setProducts] = useState([]); // All fetched products
-    const [displayedProducts, setDisplayedProducts] = useState([]); // Products to display
-    const [sortType, setSortType] = useState("default");
-    const [searchTerm, setSearchTerm] = useState(""); // State for search input
-    const navigate = useNavigate(); // Hook for navigation
+  const { category } = useParams();
+  const location = useLocation(); // Access the location object
+  const [products, setProducts] = useState([]);
+  const [displayedProducts, setDisplayedProducts] = useState([]);
+  const [sortType, setSortType] = useState("default");
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
-    const performSearch = () => {
-        const trimmedSearchTerm = searchTerm.toLowerCase().trim();
-      
-        if (!trimmedSearchTerm) {
-          alert("Please enter a search term.");
-          return;
-        }
-      
-        // Fetch all products and filter by search term
-        fetch("http://localhost:5000/api/products")
-          .then((response) => response.json())
-          .then((products) => {
-            const filteredProducts = products.filter((product) => {
-              const titleMatch = product.title.toLowerCase().includes(trimmedSearchTerm);
-              const tagMatch =
-                product.tags &&
-                product.tags.some((tag) => tag.toLowerCase().includes(trimmedSearchTerm));
-      
-              return titleMatch || tagMatch;
-            });
-      
-            if (filteredProducts.length > 0) {
-              // Always overwrite sessionStorage with new results
-              sessionStorage.setItem("filteredProducts", JSON.stringify(filteredProducts));
-              navigate("/category/search-results"); // Navigate to the search results
-            } else {
-              alert("No products found for your search.");
-            }
-          })
-          .catch((error) => console.error("Error performing search:", error));
-      };          
-    
-      const handleKeyPress = (event) => {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          performSearch();
-        }
-      };
+  const performSearch = () => {
+    const trimmedSearchTerm = searchTerm.toLowerCase().trim();
+  
+    if (!trimmedSearchTerm) {
+      alert("Please enter a search term.");
+      return;
+    }
+  
+    // Navigate to the search results page with the search term as a query parameter
+    navigate(`/category/search-results?search=${encodeURIComponent(trimmedSearchTerm)}`);
+  };  
 
-      useEffect(() => {
-        const fetchData = async () => {
-          try {
-            // Clear `sessionStorage` for new navigation or category
-            console.log("Clearing Search Results from sessionStorage");
-            // sessionStorage.removeItem("filteredProducts");
-      
-            // Check for search results in sessionStorage
-            const searchResults = sessionStorage.getItem("filteredProducts");
-            if (searchResults) {
-              const parsedResults = JSON.parse(searchResults);
-              if (parsedResults.length > 0) {
-                console.log("Displaying Search Results:", parsedResults);
-                setProducts(parsedResults); // Set all products to search results
-                setDisplayedProducts(parsedResults); // Display search results
-                return;
-              }
-            }
-      
-            // If no search results, fetch products by category
-            if (category && category !== "search-results") {
-              console.log("Filtering by Category:", category);
-              const response = await fetch("http://localhost:5000/api/products");
-              const data = await response.json();
-              const filteredProducts = data.filter(
-                (product) =>
-                  product.category &&
-                  product.category.toLowerCase() === category.toLowerCase()
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      performSearch();
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Check if there's a search term in the query parameters
+        const params = new URLSearchParams(location.search);
+        const querySearchTerm = params.get("search");
+
+        if (category === "search-results" && querySearchTerm) {
+          // Perform search with the query search term
+          const response = await fetch("http://localhost:5000/api/products");
+          const products = await response.json();
+          const filteredProducts = products.filter((product) => {
+            const titleMatch = product.title
+              .toLowerCase()
+              .includes(querySearchTerm.toLowerCase());
+            const tagMatch =
+              product.tags &&
+              product.tags.some((tag) =>
+                tag.toLowerCase().includes(querySearchTerm.toLowerCase())
               );
-              setProducts(filteredProducts);
-              setDisplayedProducts(filteredProducts);
-              return;
-            }
-      
-            // If no category or search results, display nothing
-            console.log("No category or search results, displaying nothing.");
+
+            return titleMatch || tagMatch;
+          });
+
+          if (filteredProducts.length > 0) {
+            setProducts(filteredProducts);
+            setDisplayedProducts(filteredProducts);
+          } else {
+            alert("No products found for your search.");
             setProducts([]);
             setDisplayedProducts([]);
-          } catch (error) {
-            console.error("Error fetching products:", error);
           }
-        };
-      
-        fetchData();
-      }, [category]); // Runs whenever the category changes      
+          return; // Exit the function early
+        }
+
+        // If not a search-results category or no search term, fetch by category
+        if (category && category !== "search-results") {
+          console.log("Filtering by Category:", category);
+          const response = await fetch("http://localhost:5000/api/products");
+          const data = await response.json();
+          const filteredProducts = data.filter(
+            (product) =>
+              product.category &&
+              product.category.toLowerCase() === category.toLowerCase()
+          );
+          setProducts(filteredProducts);
+          setDisplayedProducts(filteredProducts);
+          return;
+        }
+
+        // If no category or search results, display nothing
+        console.log("No category or search results, displaying nothing.");
+        setProducts([]);
+        setDisplayedProducts([]);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchData();
+  }, [category, location.search]); // Add location.search to dependencies
 
   useEffect(() => {
     // Apply sorting whenever sortType changes

@@ -70,29 +70,9 @@ const ProductPage = () => {
       return;
     }
   
-    // Fetch all products and filter by search term
-    fetch("http://localhost:5000/api/products")
-      .then((response) => response.json())
-      .then((products) => {
-        const filteredProducts = products.filter((product) => {
-          const titleMatch = product.title.toLowerCase().includes(trimmedSearchTerm);
-          const tagMatch =
-            product.tags &&
-            product.tags.some((tag) => tag.toLowerCase().includes(trimmedSearchTerm));
-  
-          return titleMatch || tagMatch;
-        });
-  
-        if (filteredProducts.length > 0) {
-          // Always overwrite sessionStorage with new results
-          sessionStorage.setItem("filteredProducts", JSON.stringify(filteredProducts));
-          navigate("/category/search-results"); // Navigate to the search results
-        } else {
-          alert("No products found for your search.");
-        }
-      })
-      .catch((error) => console.error("Error performing search:", error));
-  };  
+    // Navigate to the search results page with the search term as a query parameter
+    navigate(`/category/search-results?search=${encodeURIComponent(trimmedSearchTerm)}`);
+  };
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
