@@ -11,6 +11,8 @@ const ProductPage = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State for the search input
   const navigate = useNavigate(); // React Router's hook for navigation
 
+  const [isAddedToCart, setIsAddedToCart] = useState(false); // New state variable
+
   useEffect(() => {
     // Fetch the product data from the backend API
     fetch("http://localhost:5000/api/products")
@@ -43,7 +45,13 @@ const ProductPage = () => {
     setCart([...cart]);
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    alert(`${product.title} added to cart!`);
+    // Update the button state
+    setIsAddedToCart(true);
+
+    // Reset the button after 2 seconds
+    setTimeout(() => {
+      setIsAddedToCart(false);
+    }, 750);
   };
 
   const handleSaveForLater = () => {
@@ -64,12 +72,12 @@ const ProductPage = () => {
 
   const performSearch = () => {
     const trimmedSearchTerm = searchTerm.toLowerCase().trim();
-  
+
     if (!trimmedSearchTerm) {
       alert("Please enter a search term.");
       return;
     }
-  
+
     // Navigate to the search results page with the search term as a query parameter
     navigate(`/category/search-results?search=${encodeURIComponent(trimmedSearchTerm)}`);
   };
@@ -145,7 +153,11 @@ const ProductPage = () => {
             )}
             <img
               id="product-image"
-              src={product.images ? `/images/${product.images[currentIndex]}` : `/images/${product.image}`}
+              src={
+                product.images
+                  ? `/images/${product.images[currentIndex]}`
+                  : `/images/${product.image}`
+              }
               alt={product.title}
             />
             <div className="thumbnail-container">
@@ -173,11 +185,18 @@ const ProductPage = () => {
             <p>{product.description}</p>
 
             <div className="button-container">
-              <button className="btn btn-outline-secondary save-later-btn" onClick={handleSaveForLater}>
+              <button
+                className="save-later-btn"
+                onClick={handleSaveForLater}
+              >
                 Save for Later
               </button>
-              <button className="btn btn-outline-secondary add-to-cart-btn" onClick={handleAddToCart}>
-                Add to Cart
+              <button
+                className={`add-to-cart-btn ${isAddedToCart ? "success" : ""}`}
+                onClick={handleAddToCart}
+                disabled={isAddedToCart}
+              >
+                {isAddedToCart ? "Added to Cart" : "Add to Cart"}
               </button>
             </div>
           </div>

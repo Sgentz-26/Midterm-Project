@@ -1,5 +1,5 @@
-/* Header Styling */
-header {
+/* CartPage Styles */
+.cart-page header {
     background-color: #333;
     color: #fff;
     padding: 10px 0;
@@ -7,96 +7,97 @@ header {
     justify-content: space-between;
     align-items: center;
     position: relative;
-}
-
-/* Centering the 'Your Cart' text */
-header h1 {
+  }
+  
+  /* Centering the 'Your Cart' text */
+  .cart-page header h1 {
     position: absolute;
     font-weight: bold;
     font-size: 36px;
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
-}
-
-/* Navbar Styling */
-.navbar {
+  }
+  
+  /* Navbar Styling (if applicable) */
+  .cart-page .navbar {
     background-color: #333;
     display: flex;
-    justify-content: center; /* Center the items within the navbar */
+    justify-content: center;
     align-items: center;
-}
-
-.navbar-brand {
+  }
+  
+  .cart-page .navbar-brand {
     color: #fff;
     font-weight: bold;
     text-decoration: none;
     text-align: center;
-}
-
-.navbar-nav {
+  }
+  
+  .cart-page .navbar-nav {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.navbar-nav .nav-link {
+  }
+  
+  .cart-page .navbar-nav .nav-link {
     color: #fff;
     font-weight: bold;
     text-align: center;
-}
-
-.navbar-nav .nav-link:hover {
+  }
+  
+  .cart-page .navbar-nav .nav-link:hover {
     color: #ddd;
-}
-
-/* Main Cart Table */
-.table-responsive {
+  }
+  
+  /* Main Cart Table */
+  .cart-page .table-responsive {
     margin-top: 20px;
-}
-
-.table thead {
+  }
+  
+  .cart-page .table thead {
     background-color: #444;
     color: white;
-}
-
-.table tbody tr:hover {
+  }
+  
+  .cart-page .table tbody tr:hover {
     background-color: #f9f9f9;
-}
-
-.table td, .table th {
+  }
+  
+  .cart-page .table td,
+  .cart-page .table th {
     vertical-align: middle;
-}
-
-/* Cart Total and Checkout Button */
-#cartTotal {
+  }
+  
+  /* Cart Total and Checkout Button */
+  .cart-page #cartTotal {
     font-size: 1.5rem;
     font-weight: bold;
-}
-
-#checkoutButton {
+  }
+  
+  .cart-page #checkoutButton {
     font-size: 1.2rem;
     padding: 10px 20px;
-}
-
-/* Footer Styling */
-footer {
+  }
+  
+  /* Footer Styling */
+  .cart-page footer {
     background-color: #333;
     color: #fff;
-}
-
-footer h2.about a {
+  }
+  
+  .cart-page footer h2.about a {
     color: #fff;
     font-size: 28px;
     font-weight: bold;
-}
-
-footer p {
+  }
+  
+  .cart-page footer p {
     margin-bottom: 1rem;
-}
-
-/* Category Button Styling */
-.btn-outline-secondary {
+  }
+  
+  /* Category Button Styling */
+  .cart-page .btn-outline-secondary {
     background-color: transparent;
     color: #fff;
     border: 2px solid white;
@@ -106,9 +107,10 @@ footer p {
     margin: 0 5px;
     display: inline-block;
     cursor: pointer;
-}
-
-.btn-outline-secondary:hover {
+  }
+  
+  .cart-page .btn-outline-secondary:hover {
     background-color: #fff;
     color: #333;
-}
+  }
+  
