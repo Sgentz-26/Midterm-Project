@@ -166,6 +166,7 @@ footer {
 /* Right Side: Product Info Section */
 .product-info {
     width: 55%;
+    text-align: left;
 }
 
 .product-info h1 {
@@ -249,8 +250,8 @@ h2.about a {
 }
 
 .save-later-btn {
-    background-color: white;
-    color: black;
+    background-color: white !important;
+    color: black !important;
     padding: 10px 20px;
     border-radius: 25px;
     border: 2px solid black;
@@ -259,5 +260,5 @@ h2.about a {
 }
 
 .save-later-btn:hover {
-    background-color: #f0f0f0;
+    background-color: #f0f0f0 !important;
 }

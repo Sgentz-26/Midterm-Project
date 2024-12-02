@@ -8,8 +8,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "concurrently": "^9.1.0"
-  }, "proxy": "http://localhost:5001/"
+  "description": ""
 }
