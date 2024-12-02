@@ -5,6 +5,7 @@ import ProductPage from "./ProductPage";
 import CategoryPage from "./CategoryPage";
 import AboutPage from "./AboutPage";
 import CartPage from "./CartPage"; // Import CartPage
+import ProfilePage from "./ProfilePage";
 import "./App.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/category/:category" element={<CategoryPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage />} /> {/* Add this line */}
+          <Route path="/profile" element={<ProfilePage />} /> {/* Add this line */}
         </Routes>
       </div>
     </Router>
