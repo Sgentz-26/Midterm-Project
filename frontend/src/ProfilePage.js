@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./styles/profile.css";
 
 const ProfilePage = () => {
   const [account, setAccount] = useState(() =>
