@@ -18,8 +18,8 @@ function App() {
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/category/:category" element={<CategoryPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/cart" element={<CartPage />} /> {/* Add this line */}
-          <Route path="/profile" element={<ProfilePage />} /> {/* Add this line */}
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </div>
     </Router>
