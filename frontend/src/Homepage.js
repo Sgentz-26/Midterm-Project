@@ -77,7 +77,7 @@ const Homepage = () => {
         to={`/product/${product.id}`}
         style={{ textDecoration: "none", color: "inherit" }}
       >
-        <img src={`/images/${product.images[0]}`} alt={product.title} />
+        <img src={`/api/image-proxy?url=${encodeURIComponent(product.images[0])}`}alt={product.title}/>
         <h5>{product.title}</h5>
         <p>
           <strong>{product.price}</strong>

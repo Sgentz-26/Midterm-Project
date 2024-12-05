@@ -151,21 +151,13 @@ const ProductPage = () => {
                 </button>
               </>
             )}
-            <img
-              id="product-image"
-              src={
-                product.images
-                  ? `/images/${product.images[currentIndex]}`
-                  : `/images/${product.image}`
-              }
-              alt={product.title}
-            />
+            <img id="product-image" src={`/api/image-proxy?url=${encodeURIComponent(product.images[currentIndex])}`}alt={product.title}/>
             <div className="thumbnail-container">
               {product.images &&
                 product.images.map((imgSrc, index) => (
                   <img
                     key={index}
-                    src={`/images/${imgSrc}`}
+                    src={`/api/image-proxy?url=${encodeURIComponent(imgSrc)}`}
                     className={`thumbnail ${index === currentIndex ? "active" : ""}`}
                     alt={`Thumbnail ${index}`}
                     onClick={() => setCurrentIndex(index)}

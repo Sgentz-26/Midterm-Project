@@ -125,7 +125,7 @@ const CategoryPage = () => {
 
   const createProductCard = (product) => (
     <div className="product-card" key={product.id}>
-      <img src={`/images/${product.images[0]}`} alt={product.title} />
+      <img src={`/api/image-proxy?url=${encodeURIComponent(product.images[0])}`}alt={product.title}/>
       <h5>{product.title}</h5>
       <p>
         <strong>{product.price}</strong>

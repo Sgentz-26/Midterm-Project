@@ -1,14 +1,25 @@
-[
+const admin = require("firebase-admin");
+
+// Initialize Firebase Admin
+const serviceAccount = require("./firebase-service-account.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+
+const db = admin.firestore();
+
+const products = [
   {
-    "id": 1,
-    "title": "Spacious and Efficient Refrigerator",
-    "price": "$799.99",
-    "rating": "4.5",
-    "images": ["fridge.jpg"],
-    "description": "This refrigerator offers ample space and energy-efficient cooling, making it ideal for modern kitchens. Comes with a spacious freezer and adjustable shelves for convenience.",
-    "category": "Appliances",
-    "tags": ["refrigerator", "appliances", "energy-efficient", "kitchen"],
-    "manufacturer": "Samsung"
+    id: 1,
+    title: "Spacious and Efficient Refrigerator",
+    price: "$799.99",
+    rating: "4.5",
+    images: ["fridge.jpg"],
+    description: "This refrigerator offers ample space...",
+    category: "Appliances",
+    tags: ["refrigerator", "appliances", "energy-efficient", "kitchen"],
+    manufacturer: "Samsung",
   },
   {
     "id": 2,
@@ -153,4 +164,24 @@
     "tags": ["Champion", "hoodie", "Powerblend", "fleece", "comfortable", "classic fit", "durable"],
     "manufacturer": "Champion"
   }  
-]
+  // Add more products here
+];
+
+async function seedProducts() {
+  const productsRef = db.collection("products");
+
+  for (const product of products) {
+    const docRef = productsRef.doc(product.id.toString());
+    await docRef.set(product);
+    console.log(`Added product with ID: ${product.id}`);
+  }
+
+  console.log("Finished seeding Firestore!");
+}
+
+seedProducts()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error("Error seeding Firestore:", error);
+    process.exit(1);
+  });
