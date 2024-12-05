@@ -8,8 +8,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "react-scripts": "^5.0.1"
-  }
+  "description": ""
 }

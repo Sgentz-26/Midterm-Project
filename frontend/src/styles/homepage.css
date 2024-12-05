@@ -175,12 +175,13 @@ h2.about a {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5) !important;
     color: #fff;
     border: none;
     font-size: 2rem;
     cursor: pointer;
     padding: 10px;
+    display: flex;
     z-index: 2;
 }
 
@@ -195,7 +196,7 @@ h2.about a {
 
 /* Hover effect for the carousel buttons */
 .carousel-prev:hover, .carousel-next:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.7) !important;
 }
 
 main {
