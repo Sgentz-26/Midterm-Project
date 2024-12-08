@@ -26,7 +26,6 @@ app.use((req, res, next) => {
 // API route to fetch products from Firestore
 app.get("/api/products", async (req, res) => {
   try {
-    // Fetch all products from Firestore
     const productsRef = db.collection("products");
     const snapshot = await productsRef.get();
 
@@ -34,10 +33,8 @@ app.get("/api/products", async (req, res) => {
       return res.status(404).send({ error: "No products found." });
     }
 
-    // Map Firestore documents to JSON
     const products = snapshot.docs.map((doc) => doc.data());
-
-    res.status(200).json(products); // Send products to the frontend
+    res.status(200).json(products);
   } catch (error) {
     console.error("Error fetching products:", error);
     res.status(500).send({ error: "Error fetching products" });
@@ -53,17 +50,211 @@ app.get("/api/image-proxy", async (req, res) => {
   }
 
   try {
-    // Fetch the image from the given URL
     const response = await axios.get(url, { responseType: "arraybuffer" });
-
-    // Pass through the content type
     res.set("Content-Type", response.headers["content-type"]);
-
-    // Send the image data
     res.send(response.data);
   } catch (error) {
     console.error("Error fetching image:", error);
     res.status(500).send({ error: "Error fetching image." });
+  }
+});
+
+// Update cart items for a user
+app.put("/api/users/:userId/cart", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { cart } = req.body;
+
+    if (!Array.isArray(cart)) {
+      return res.status(400).send({ error: "Cart must be an array of items." });
+    }
+
+    const userRef = db.collection("users").doc(userId);
+    await userRef.update({ cart });
+
+    res.status(200).send({ message: "Cart updated successfully." });
+  } catch (error) {
+    console.error("Error updating cart:", error);
+    res.status(500).send({ error: "Error updating cart." });
+  }
+});
+
+// Fetch user cart
+app.get("/api/users/:userId/cart", async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const userRef = db.collection("users").doc(userId);
+    const userSnapshot = await userRef.get();
+
+    if (!userSnapshot.exists) {
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    const user = userSnapshot.data();
+    res.status(200).json({ cart: user.cart || [] });
+  } catch (error) {
+    console.error("Error fetching cart:", error);
+    res.status(500).json({ error: "Error fetching cart." });
+  }
+});
+
+// Update saved items for a user
+app.put("/api/users/:userId/saved", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { saved } = req.body;
+
+    if (!Array.isArray(saved)) {
+      return res.status(400).send({ error: "Saved must be an array of items." });
+    }
+
+    const userRef = db.collection("users").doc(userId);
+    await userRef.update({ saved });
+
+    res.status(200).send({ message: "Saved items updated successfully." });
+  } catch (error) {
+    console.error("Error updating saved items:", error);
+    res.status(500).send({ error: "Error updating saved items." });
+  }
+});
+
+// Fetch user saved items
+app.get("/api/users/:userId/saved", async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const userRef = db.collection("users").doc(userId);
+    const userSnapshot = await userRef.get();
+
+    if (!userSnapshot.exists) {
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    const user = userSnapshot.data();
+    res.status(200).json({ saved: user.saved || [] });
+  } catch (error) {
+    console.error("Error fetching saved items:", error);
+    res.status(500).json({ error: "Error fetching saved items." });
+  }
+});
+
+// API route to handle user sign-up
+app.post("/api/users/signup", async (req, res) => {
+  try {
+    const { firstName, lastName, email, phone, birthday, password } = req.body;
+
+    if (!firstName || !lastName || !email || !password) {
+      return res.status(400).json({ error: "First name, last name, email, and password are required." });
+    }
+
+    const usersRef = db.collection("users");
+    const existingUserSnapshot = await usersRef.where("email", "==", email).get();
+
+    if (!existingUserSnapshot.empty) {
+      return res.status(400).json({ error: "Email is already associated with an account." });
+    }
+
+    const newUser = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      birthday,
+      password, // In production, hash this
+      cart: [],
+      saved: [], // Initialize saved for later items
+      createdAt: new Date().toISOString(),
+    };
+
+    await usersRef.add(newUser);
+
+    res.status(201).json({ message: "Account created successfully!" });
+  } catch (error) {
+    console.error("Error creating user account:", error);
+    res.status(500).json({ error: "Error creating account." });
+  }
+});
+
+// API route to handle user login
+app.post("/api/users/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).send({ error: "Email and password are required." });
+    }
+
+    const usersRef = db.collection("users");
+    const userSnapshot = await usersRef.where("email", "==", email).get();
+
+    if (userSnapshot.empty) {
+      return res.status(400).send({ error: "No account found with this email." });
+    }
+
+    const user = userSnapshot.docs[0].data();
+
+    if (user.password !== password) {
+      return res.status(400).send({ error: "Incorrect password." });
+    }
+
+    res.status(200).send({
+      message: "Login successful!",
+      user: {
+        id: userSnapshot.docs[0].id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        birthday: user.birthday,
+      },
+    });
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).send({ error: "Error during login." });
+  }
+});
+
+// API route to update user profile
+app.put("/api/users/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const updates = req.body;
+
+    const userRef = db.collection("users").doc(userId);
+    await userRef.update(updates);
+
+    res.status(200).send({ message: "Profile updated successfully." });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).send({ error: "Error updating profile." });
+  }
+});
+
+// API route to delete user account
+app.delete("/api/users/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { password } = req.body;
+
+    const userRef = db.collection("users").doc(userId);
+    const userSnapshot = await userRef.get();
+
+    if (!userSnapshot.exists) {
+      return res.status(404).send({ error: "User not found." });
+    }
+
+    const user = userSnapshot.data();
+
+    if (user.password !== password) {
+      return res.status(400).send({ error: "Incorrect password." });
+    }
+
+    await userRef.delete();
+    res.status(200).send({ message: "Account deleted successfully." });
+  } catch (error) {
+    console.error("Error deleting account:", error);
+    res.status(500).send({ error: "Error deleting account." });
   }
 });
 

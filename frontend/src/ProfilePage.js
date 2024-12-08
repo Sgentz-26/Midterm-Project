@@ -1,71 +1,98 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles/profile.css";
 
 const ProfilePage = () => {
-  const [account, setAccount] = useState(() => {
-    const savedAccount = localStorage.getItem("account");
-    return savedAccount ? JSON.parse(savedAccount) : null;
-  });
-  const [username, setUsername] = useState("");
+  const [isSignUp, setIsSignUp] = useState(false); 
+  const navigate = useNavigate();
+
+  // Sign-up form states
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [birthday, setBirthday] = useState("");
   const [password, setPassword] = useState("");
-  const [editUsername, setEditUsername] = useState("");
-  const [editPassword, setEditPassword] = useState("");
-  const [isSignUp, setIsSignUp] = useState(false); // Tracks whether user is on sign-up page
+  const [confirmPassword, setConfirmPassword] = useState("");
 
+  // Login form states
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  // Check if user is already logged in
   useEffect(() => {
-    if (account) {
-      setUsername(account.username);
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      navigate("/profile-view");
     }
-  }, [account]);
+  }, [navigate]);
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    if (localStorage.getItem("account")) {
-      alert("Account already exists. Please sign in.");
+
+    if (!firstName || !lastName || !email || !phone || !birthday || !password || !confirmPassword) {
+      alert("Please fill out all fields.");
       return;
     }
 
-    const newAccount = { username, password };
-    localStorage.setItem("account", JSON.stringify(newAccount));
-    setAccount(newAccount);
-    alert("Account created successfully! Please sign in.");
-  };
-
-  const handleSignIn = (e) => {
-    e.preventDefault();
-    const savedAccount = JSON.parse(localStorage.getItem("account"));
-    if (savedAccount && savedAccount.username === username && savedAccount.password === password) {
-      setAccount(savedAccount);
-      alert("Sign-in successful!");
-    } else {
-      alert("Invalid username or password.");
-    }
-  };
-
-  const handleEditProfile = (e) => {
-    e.preventDefault();
-    if (!account) {
-      alert("No account found. Please sign up.");
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
       return;
     }
 
-    const updatedAccount = {
-      username: editUsername || account.username,
-      password: editPassword || account.password,
-    };
+    try {
+      const response = await fetch("http://localhost:5000/api/users/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ firstName, lastName, email, phone, birthday, password }),
+      });
 
-    localStorage.setItem("account", JSON.stringify(updatedAccount));
-    setAccount(updatedAccount);
-    alert("Profile updated successfully!");
-    setEditUsername("");
-    setEditPassword("");
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "An error occurred during sign-up.");
+      }
+
+      alert(data.message);
+      setIsSignUp(false); 
+    } catch (error) {
+      console.error("Sign-up error:", error);
+      alert(error.message || "Error creating account.");
+    }
   };
 
-  const handleDeleteAccount = () => {
-    localStorage.removeItem("account");
-    setAccount(null);
-    alert("Account deleted successfully!");
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    if (!loginEmail || !loginPassword) {
+      alert("Please enter your email and password.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "An error occurred during login.");
+      }
+
+      // Save user to localStorage
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/profile-view");
+    } catch (error) {
+      console.error("Login error:", error);
+      alert(error.message || "Error logging in.");
+    }
   };
 
   return (
@@ -76,85 +103,38 @@ const ProfilePage = () => {
         </Link>
       </header>
 
-      {!account ? (
-        <div className="auth-section">
-          {isSignUp ? (
-            <>
-              <h2>Sign Up</h2>
-              <form onSubmit={handleSignUp}>
-                <input
-                  type="text"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <button type="submit">Sign Up</button>
-              </form>
-              <button className="toggle-auth-btn" onClick={() => setIsSignUp(false)}>
-                Already have an account? Log In
-              </button>
-            </>
-          ) : (
-            <>
-              <h2>Log In</h2>
-              <form onSubmit={handleSignIn}>
-                <input
-                  type="text"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <button type="submit">Log In</button>
-              </form>
-              <button className="toggle-auth-btn" onClick={() => setIsSignUp(true)}>
-                Don't have an account? Sign Up
-              </button>
-            </>
-          )}
-        </div>
-      ) : (
-        <div className="profile-section">
-          <h2>Welcome, {account.username}!</h2>
-          <p>Manage your profile below:</p>
-
-          <h3>Edit Profile</h3>
-          <form onSubmit={handleEditProfile}>
-            <input
-              type="text"
-              placeholder="New Username"
-              value={editUsername}
-              onChange={(e) => setEditUsername(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="New Password"
-              value={editPassword}
-              onChange={(e) => setEditPassword(e.target.value)}
-            />
-            <button type="submit">Save Changes</button>
-          </form>
-
-          <button className="delete-account-btn" onClick={handleDeleteAccount}>
-            Delete Account
-          </button>
-        </div>
-      )}
+      <div className="auth-section">
+        {isSignUp ? (
+          <>
+            <h2>Sign Up</h2>
+            <form onSubmit={handleSignUp}>
+              <input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+              <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+              <input type="tel" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+              <input type="date" placeholder="Birthday" value={birthday} onChange={(e) => setBirthday(e.target.value)} required />
+              <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+              <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+              <button type="submit">Sign Up</button>
+            </form>
+            <button className="toggle-auth-btn" onClick={() => setIsSignUp(false)}>
+              Already have an account? Log In
+            </button>
+          </>
+        ) : (
+          <>
+            <h2>Log In</h2>
+            <form onSubmit={handleLogin}>
+              <input type="email" placeholder="Email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} required />
+              <input type="password" placeholder="Password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required />
+              <button type="submit">Log In</button>
+            </form>
+            <button className="toggle-auth-btn" onClick={() => setIsSignUp(true)}>
+              Don't have an account? Sign Up
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 };

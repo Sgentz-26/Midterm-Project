@@ -4,21 +4,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/product_page.css";
 
 const ProductPage = () => {
-  const { id } = useParams(); // Get the product ID from the URL
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem("cart")) || []);
-  const [searchTerm, setSearchTerm] = useState(""); // State for the search input
-  const navigate = useNavigate(); // React Router's hook for navigation
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [isSavedForLater, setIsSavedForLater] = useState(false);
+  const navigate = useNavigate();
 
-  const [isAddedToCart, setIsAddedToCart] = useState(false); // New state variable
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    // Fetch the product data from the backend API
+    if (!user) {
+      navigate("/profile");
+      return;
+    }
+
     fetch("http://localhost:5000/api/products")
       .then((response) => response.json())
       .then((data) => {
-        const foundProduct = data.find((p) => p.id === parseInt(id));
+        const foundProduct = data.find((p) => p.id === parseInt(id, 10));
         if (foundProduct) {
           setProduct(foundProduct);
         } else {
@@ -26,59 +30,134 @@ const ProductPage = () => {
         }
       })
       .catch((error) => console.error("Error fetching products:", error));
-  }, [id]);
+  }, [id, user, navigate]);
 
-  const handleAddToCart = () => {
-    const existingProduct = cart.find((item) => item.id === product.id);
-
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      cart.push({
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        quantity: 1,
-      });
-    }
-
-    setCart([...cart]);
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    // Update the button state
-    setIsAddedToCart(true);
-
-    // Reset the button after 2 seconds
-    setTimeout(() => {
-      setIsAddedToCart(false);
-    }, 750);
+  const fetchUserCart = async () => {
+    const res = await fetch(`http://localhost:5000/api/users/${user.id}/cart`);
+    if (!res.ok) throw new Error("Failed to fetch user cart");
+    const data = await res.json();
+    return data.cart || [];
   };
 
-  const handleSaveForLater = () => {
-    alert("This feature is not yet available.");
+  const saveCartToBackend = async (updatedCart) => {
+    await fetch(`http://localhost:5000/api/users/${user.id}/cart`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cart: updatedCart }),
+    });
+  };
+
+  const fetchUserSaved = async () => {
+    const res = await fetch(`http://localhost:5000/api/users/${user.id}/saved`);
+    if (!res.ok) throw new Error("Failed to fetch user saved items");
+    const data = await res.json();
+    return data.saved || [];
+  };
+
+  const saveSavedToBackend = async (updatedSaved) => {
+    await fetch(`http://localhost:5000/api/users/${user.id}/saved`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ saved: updatedSaved }),
+    });
+  };
+
+  const handleAddToCart = async () => {
+    if (!product) return;
+
+    try {
+      const currentCart = await fetchUserCart();
+      const numericPrice = parseFloat(product.price.replace("$", ""));
+
+      const existingProduct = currentCart.find((item) => item.id === product.id);
+      let updatedCart;
+
+      if (existingProduct) {
+        updatedCart = currentCart.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        updatedCart = [
+          ...currentCart,
+          {
+            id: product.id,
+            title: product.title,
+            price: numericPrice,
+            quantity: 1,
+          },
+        ];
+      }
+
+      await saveCartToBackend(updatedCart);
+
+      setIsAddedToCart(true);
+      setTimeout(() => {
+        setIsAddedToCart(false);
+      }, 750);
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      alert("Error adding to cart. Please try again.");
+    }
+  };
+
+  const handleSaveForLater = async () => {
+    if (!product) return;
+
+    try {
+      const currentSaved = await fetchUserSaved();
+      const numericPrice = parseFloat(product.price.replace("$", ""));
+
+      // Check if item already saved
+      const existingItem = currentSaved.find((item) => item.id === product.id);
+      if (existingItem) {
+        alert("This item is already in your saved for later list.");
+        return;
+      }
+
+      const updatedSaved = [
+        ...currentSaved,
+        {
+          id: product.id,
+          title: product.title,
+          price: numericPrice,
+          quantity: 1,
+        },
+      ];
+
+      await saveSavedToBackend(updatedSaved);
+
+      // Show success animation on the "Save for Later" button
+      setIsSavedForLater(true);
+      setTimeout(() => {
+        setIsSavedForLater(false);
+      }, 750);
+    } catch (error) {
+      console.error("Error saving for later:", error);
+      alert("Error saving item for later. Please try again.");
+    }
   };
 
   const handleNextImage = () => {
+    if (!product) return;
     setCurrentIndex((prevIndex) =>
       prevIndex === product.images.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const handlePrevImage = () => {
+    if (!product) return;
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? product.images.length - 1 : prevIndex - 1
     );
   };
 
+  const [searchTerm, setSearchTerm] = useState("");
   const performSearch = () => {
     const trimmedSearchTerm = searchTerm.toLowerCase().trim();
-
     if (!trimmedSearchTerm) {
       alert("Please enter a search term.");
       return;
     }
-
-    // Navigate to the search results page with the search term as a query parameter
     navigate(`/category/search-results?search=${encodeURIComponent(trimmedSearchTerm)}`);
   };
 
@@ -122,13 +201,13 @@ const ProductPage = () => {
               placeholder="Type to Search..."
               aria-label="Search"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)} // Update search term
-              onKeyDown={handleKeyPress} // Trigger search on Enter
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={handleKeyPress}
             />
             <button
               className="btn btn-outline-secondary"
               type="button"
-              onClick={performSearch} // Perform search on button click
+              onClick={performSearch}
             >
               🔍
             </button>
@@ -151,13 +230,17 @@ const ProductPage = () => {
                 </button>
               </>
             )}
-            <img id="product-image" src={`/api/image-proxy?url=${encodeURIComponent(product.images[currentIndex])}`}alt={product.title}/>
+            <img
+              id="product-image"
+              src={`http://localhost:5000/api/image-proxy?url=${encodeURIComponent(product.images[currentIndex])}`}
+              alt={product.title}
+            />
             <div className="thumbnail-container">
               {product.images &&
                 product.images.map((imgSrc, index) => (
                   <img
                     key={index}
-                    src={`/api/image-proxy?url=${encodeURIComponent(imgSrc)}`}
+                    src={`http://localhost:5000/api/image-proxy?url=${encodeURIComponent(imgSrc)}`}
                     className={`thumbnail ${index === currentIndex ? "active" : ""}`}
                     alt={`Thumbnail ${index}`}
                     onClick={() => setCurrentIndex(index)}
@@ -178,10 +261,11 @@ const ProductPage = () => {
 
             <div className="button-container">
               <button
-                className="save-later-btn"
+                className={`save-later-btn ${isSavedForLater ? "success" : ""}`}
                 onClick={handleSaveForLater}
+                disabled={isSavedForLater}
               >
-                Save for Later
+                {isSavedForLater ? "Added to Saved" : "Save for Later"}
               </button>
               <button
                 className={`add-to-cart-btn ${isAddedToCart ? "success" : ""}`}

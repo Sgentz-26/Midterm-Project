@@ -262,3 +262,8 @@ h2.about a {
 .save-later-btn:hover {
     background-color: #f0f0f0 !important;
 }
+
+.save-later-btn.success {
+    background-color: #28a745 !important;
+    color: white !important;
+}

@@ -6,23 +6,41 @@ import "./styles/homepage.css";
 const Homepage = () => {
   const [products, setProducts] = useState([]);
   const [productWidth, setProductWidth] = useState(0);
-  const [searchTerm, setSearchTerm] = useState(""); // State for the search input
-  const navigate = useNavigate(); // React Router's hook for navigation
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch product data from the backend API
     fetch("http://localhost:5000/api/products")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          // If response isn't ok, throw an error to catch below
+          return response.text().then((text) => {
+            throw new Error(text || "Failed to fetch products");
+          });
+        }
+        return response.json();
+      })
       .then((data) => {
-        setProducts(data);
+        // Ensure data is an array
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          console.error("Expected an array of products, got:", data);
+          setProducts([]);
+        }
 
-        // Set the width of the product cards once they are loaded
+        // Set the width of the product cards after they load
         setTimeout(() => {
           const productCard = document.querySelector(".product-card");
           if (productCard) setProductWidth(productCard.offsetWidth);
         }, 100);
       })
-      .catch((error) => console.error("Error fetching products:", error));
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+        // Set products to empty to avoid map error
+        setProducts([]);
+      });
   }, []);
 
   const performSearch = () => {
@@ -33,7 +51,6 @@ const Homepage = () => {
       return;
     }
 
-    // Navigate to the search results page with the search term as a query parameter
     navigate(`/category/search-results?search=${encodeURIComponent(trimmedSearchTerm)}`);
   };
 
@@ -47,6 +64,8 @@ const Homepage = () => {
   const slideCarousel = (direction) => {
     const carousel = document.querySelector("#carouselItems");
     const items = carousel.querySelectorAll(".product-card");
+
+    if (items.length === 0) return;
 
     if (direction === "next") {
       const firstItem = items[0];
@@ -77,7 +96,7 @@ const Homepage = () => {
         to={`/product/${product.id}`}
         style={{ textDecoration: "none", color: "inherit" }}
       >
-        <img src={`/api/image-proxy?url=${encodeURIComponent(product.images[0])}`}alt={product.title}/>
+        <img src={`/api/image-proxy?url=${encodeURIComponent(product.images[0])}`} alt={product.title} />
         <h5>{product.title}</h5>
         <p>
           <strong>{product.price}</strong>
@@ -136,13 +155,13 @@ const Homepage = () => {
               placeholder="Type to Search..."
               aria-label="Search"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)} // Update search term
-              onKeyDown={handleKeyPress} // Trigger search on Enter
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={handleKeyPress}
             />
             <button
               className="btn btn-outline-secondary"
               type="button"
-              onClick={performSearch} // Perform search on button click
+              onClick={performSearch}
             >
               🔍
             </button>
@@ -162,7 +181,11 @@ const Homepage = () => {
           </button>
           <div className="carousel-wrapper">
             <div className="carousel" id="carouselItems">
-              {products.map((product) => createProductCard(product))}
+              {Array.isArray(products) && products.length > 0 ? (
+                products.map((product) => createProductCard(product))
+              ) : (
+                <p>No products available.</p>
+              )}
             </div>
           </div>
           <button
