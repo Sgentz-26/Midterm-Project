@@ -1,8 +1,10 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const admin = require("firebase-admin");
 const axios = require("axios");
-require('dotenv').config();
+const stripe = require('stripe')('SECRET_KEY_GOES_HERE');
+// console.log('Stripe Secret Key:', process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 
@@ -265,6 +267,35 @@ app.delete("/api/users/:userId", async (req, res) => {
   } catch (error) {
     console.error("Error deleting account:", error);
     res.status(500).send({ error: "Error deleting account." });
+  }
+});
+
+app.post('/create-checkout-session', async (req, res) => {
+  try {
+    const { items } = req.body;
+    console.log('Received items:', items); // Debugging
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: items.map((item) => ({
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: item.name,
+          },
+          unit_amount: item.price, // This must be an integer
+        },
+        quantity: item.quantity,
+      })),
+      success_url: 'http://localhost:3000/success',
+      cancel_url: 'http://localhost:3000/cancel',
+    });
+
+    res.json({ url: session.url });
+  } catch (error) {
+    console.error('Error creating Stripe Checkout Session:', error);
+    res.status(500).send({ error: 'Unable to create checkout session' });
   }
 });
 

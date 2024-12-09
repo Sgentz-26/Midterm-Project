@@ -7,6 +7,9 @@ import AboutPage from "./AboutPage";
 import CartPage from "./CartPage";
 import ProfilePage from "./ProfilePage";
 import ProfileViewPage from "./ProfileViewPage";
+import CheckoutPage from "./CheckoutPage";
+import SuccessPage from "./SuccessPage";
+import CancelPage from "./CancelPage";
 import "./App.css";
 
 function App() {
@@ -31,6 +34,9 @@ function App() {
           <Route path="/about" element={<ProtectedRoute element={<AboutPage />} />} />
           <Route path="/cart" element={<ProtectedRoute element={<CartPage />} />} />
           <Route path="/profile-view" element={<ProtectedRoute element={<ProfileViewPage />} />} />
+          <Route path="/checkout" element={<ProtectedRoute element={<CheckoutPage />} />} />
+          <Route path="/success" element={<SuccessPage />} />
+          <Route path="/cancel" element={<CancelPage />} />
 
           {/* Catch-all: If user tries unknown path and is not logged in, goes to profile */}
           <Route path="*" element={user ? <Homepage /> : <ProfilePage />} />

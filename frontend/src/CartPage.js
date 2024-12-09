@@ -230,7 +230,7 @@ const CartPage = () => {
 
         <div className="d-flex justify-content-end align-items-center mb-5">
           <h3 className="me-3">Total: ${cartTotal}</h3>
-          <button className="btn btn-success">Proceed to Checkout</button>
+          <button className="btn btn-success" onClick={() => navigate("/checkout")}>Proceed to Checkout</button>
         </div>
 
         <h2>Saved for Later</h2>
