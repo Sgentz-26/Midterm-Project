@@ -19,11 +19,14 @@ admin.initializeApp({
 
 let db = admin.firestore();
 
-// Use Firestore emulator if running in development
+// Force Firestore to use the Emulator (hardcoded connection to localhost:8080)
+console.log("Forcing connection to Firestore Emulator...");
 db.settings({
-  host: "localhost:8080",
-  ssl: false
+  host: "localhost:8080",  // Firestore emulator host
+  ssl: false               // Disable SSL as it's not needed for the emulator
 });
+
+console.log("Firestore initialized:", db); // Should confirm emulator is connected
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
