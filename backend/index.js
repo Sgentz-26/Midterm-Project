@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const admin = require("firebase-admin");
 const axios = require("axios");
+require('dotenv').config();
 
 const app = express();
 
@@ -16,7 +17,13 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-const db = admin.firestore();
+let db = admin.firestore();
+
+// Use Firestore emulator if running in development
+db.settings({
+  host: "localhost:8080",
+  ssl: false
+});
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
