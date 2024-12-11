@@ -135,7 +135,7 @@ h2.about a {
 
 /* Product card styling within the carousel */
 .product-card {
-    flex: 0 0 20%; /* Ensure consistent product card size */
+    flex: 0 0 20%;
     margin: 0 10px;
     text-align: center;
     padding: 15px;
@@ -143,22 +143,22 @@ h2.about a {
 
 /* Ensuring consistent image size */
 .product-card img {
-    width: 100%; /* Ensure full width of container */
-    max-width: 250px; /* Maximum width */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%;
+    max-width: 250px;
+    height: auto;
     border-radius: 10px;
     display: block;
-    margin: 0 auto; /* Center images */
+    margin: 0 auto;
 }
 
 /* Override default link styles for product titles */
 .product-card a {
-    text-decoration: none; /* Remove underline from links */
-    color: #000; /* Set link text color to black */
+    text-decoration: none;
+    color: #000;
 }
 
 .product-card a:hover {
-    color: #007bff; /* Optional: Change color on hover */
+    color: #007bff;
 }
 
 /* Rating styling */

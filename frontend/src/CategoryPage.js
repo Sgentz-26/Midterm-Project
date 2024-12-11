@@ -5,7 +5,7 @@ import "./styles/category.css";
 
 const CategoryPage = () => {
   const { category } = useParams();
-  const location = useLocation(); // Access the location object
+  const location = useLocation();
   const [products, setProducts] = useState([]);
   const [displayedProducts, setDisplayedProducts] = useState([]);
   const [sortType, setSortType] = useState("default");
@@ -63,7 +63,7 @@ const CategoryPage = () => {
             setProducts([]);
             setDisplayedProducts([]);
           }
-          return; // Exit the function early
+          return;
         }
 
         // If not a search-results category or no search term, fetch by category
@@ -121,7 +121,7 @@ const CategoryPage = () => {
         break; // No sorting
     }
     setDisplayedProducts(sortedProducts);
-  }, [sortType, products]); // Dependencies updated to include products
+  }, [sortType, products]);
 
   const createProductCard = (product) => (
     <div className="product-card" key={product.id}>
@@ -185,8 +185,8 @@ const CategoryPage = () => {
               className="form-control"
               id="searchInput"
               placeholder="Type to Search..."
-              value={searchTerm} // Bind input to searchTerm
-              onChange={(e) => setSearchTerm(e.target.value)} // Update state
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleKeyPress} // Trigger search on Enter
             />
             <button

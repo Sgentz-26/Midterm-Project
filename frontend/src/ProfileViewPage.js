@@ -3,13 +3,13 @@ import { useNavigate, Link } from "react-router-dom";
 import "./styles/profileView.css";
 
 const ProfileViewPage = () => {
-  const [user, setUser] = useState(null); // Start with null
+  const [user, setUser] = useState(null);
   const [updatedUser, setUpdatedUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
-
+d
   useEffect(() => {
-    // On mount, always re-check localStorage to ensure the latest user info
+    // On mount, re-check localStorage to ensure the latest user info
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (!storedUser) {
       navigate("/profile");

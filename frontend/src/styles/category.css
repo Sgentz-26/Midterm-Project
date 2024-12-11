@@ -119,7 +119,7 @@ input::placeholder {
 /* Ensuring consistent image size */
 .product-card img {
     width: 100%;
-    max-width: 150px; /* Limit the maximum width of the images */
+    max-width: 150px;
     height: auto; /* Maintain aspect ratio */
     border-radius: 5px;
     display: block;

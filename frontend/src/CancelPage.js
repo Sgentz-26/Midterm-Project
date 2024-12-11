@@ -7,9 +7,9 @@ const CancelPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/');
-    }, 5000); // Redirect after 5 seconds
+    }, 5000);
 
-    return () => clearTimeout(timer); // Cleanup timer on component unmount
+    return () => clearTimeout(timer);
   }, [navigate]);
 
   return (

@@ -3,7 +3,7 @@ import './styles/checkout_page.css';
 import { Link } from 'react-router-dom';
 
 const CheckoutPage = () => {
-  const [step, setStep] = useState(1); // Track the current step
+  const [step, setStep] = useState(1);
   const [shippingAddress, setShippingAddress] = useState({
     fullName: '',
     address: '',
@@ -12,7 +12,7 @@ const CheckoutPage = () => {
     zip: '',
   });
   const [shippingCost, setShippingCost] = useState(0);
-  const [cart, setCart] = useState([]); // Cart data
+  const [cart, setCart] = useState([]);
 
   // Fetch cart data
   useEffect(() => {

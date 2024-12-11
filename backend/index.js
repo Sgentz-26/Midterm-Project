@@ -173,9 +173,9 @@ app.post("/api/users/signup", async (req, res) => {
       email,
       phone,
       birthday,
-      password, // In production, hash this
+      password,
       cart: [],
-      saved: [], // Initialize saved for later items
+      saved: [],
       createdAt: new Date().toISOString(),
     };
 
@@ -273,7 +273,7 @@ app.delete("/api/users/:userId", async (req, res) => {
 app.post('/create-checkout-session', async (req, res) => {
   try {
     const { items } = req.body;
-    console.log('Received items:', items); // Debugging
+    console.log('Received items:', items);
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -284,7 +284,7 @@ app.post('/create-checkout-session', async (req, res) => {
           product_data: {
             name: item.name,
           },
-          unit_amount: item.price, // This must be an integer
+          unit_amount: item.price,
         },
         quantity: item.quantity,
       })),

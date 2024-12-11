@@ -28,7 +28,7 @@
 
 .profile-view-page .profile-main {
     flex: 1;
-    padding: 20px 50px; /* Increased left and right padding for larger margins */
+    padding: 20px 50px;
 }
 
 .profile-view-page .profile-grid {
@@ -63,11 +63,11 @@
 
 .profile-view-page .button-group {
     display: flex;
-    flex-direction: column; /* Stack buttons vertically */
+    flex-direction: column;
     gap: 10px;
     width: 100%;
-    max-width: 300px; /* Restrict button group width for better alignment */
-    margin: 0 auto; /* Center the button group horizontally */
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 .profile-view-page button {
@@ -76,7 +76,7 @@
     cursor: pointer;
     border: none;
     font-size: 16px;
-    width: 100%; /* Ensure buttons have the same width */
+    width: 100%;
 }
 
 .profile-view-page .logout-btn {

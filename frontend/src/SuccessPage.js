@@ -7,7 +7,7 @@ const SuccessPage = () => {
   useEffect(() => {
     const clearCart = async () => {
       try {
-        const user = JSON.parse(localStorage.getItem('user')); // Fetch user data from localStorage
+        const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
           const response = await fetch(`http://localhost:5000/api/users/${user.id}/cart`, {
             method: 'PUT',
@@ -36,7 +36,7 @@ const SuccessPage = () => {
       navigate('/');
     }, 5000);
 
-    return () => clearTimeout(timer); // Cleanup timer on component unmount
+    return () => clearTimeout(timer);
   }, [navigate]);
 
   return (

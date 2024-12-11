@@ -14,7 +14,6 @@ const Homepage = () => {
     fetch("http://localhost:5000/api/products")
       .then((response) => {
         if (!response.ok) {
-          // If response isn't ok, throw an error to catch below
           return response.text().then((text) => {
             throw new Error(text || "Failed to fetch products");
           });

@@ -16,7 +16,6 @@ function App() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   // If user is not logged in, redirect all routes except /profile to /profile
-  // We'll create a simple component to handle that:
   const ProtectedRoute = ({ element }) => {
     return user ? element : <Navigate to="/profile" />;
   };
